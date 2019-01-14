@@ -1,0 +1,344 @@
+/*
+Theme Name: elysseromeo.com
+Author: gunnar.tech
+Author URI: http://gunnar.tech/
+Description: Custom portfolio theme built for elysseromeo.com.
+Version: 1.0.0
+License: MIT
+License URI: https://www.gnu.org/licenses/gpl.html
+Text Domain: blankslate
+*/
+
+/* IMPORTS
+  ========================================================================== */
+  @import 'partials/normalize';
+  @import 'partials/variables';
+  @import 'partials/onepagescroll';
+  @import 'partials/typography';
+  @import 'partials/form';
+
+/* THEME STYLES
+  ========================================================================== */
+
+#loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  background: $white;
+  overflow: hidden;
+  text-align: center;
+}
+
+#loaderSVG {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cls-loader {
+  fill: none;
+  stroke: #162d59;
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
+}
+
+header {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    margin: 0 1em;
+    z-index: 2;
+  }
+}
+
+.logo {
+  height: 50px;
+
+  svg {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.cls-logo {
+  fill:#081121;
+}
+
+.about__page {
+  width: 100%;
+  height: calc(100% - 100px);
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 4;
+  background-color: $white;
+  color: $light-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.about__close {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 6;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+
+  @include bp-desktop {
+    top: 100px;
+  }
+}
+
+.cls-exit {
+  fill:none;
+  stroke:#081121;
+  stroke-miterlimit:10;
+  stroke-width:2px;
+  transform-origin: center;
+}
+
+.about-inner {
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-color: rgba(0,0,0,0);
+  z-index: 5;
+
+  @include bp-laptop {
+    width: 75%;
+  }
+
+  @include bp-desktop {
+    max-width: 1024px;
+  }
+}
+
+.about-info {
+  padding: 10px;
+
+  h2 {
+    color: $dark-blue;
+  }
+
+  p {
+    color: $dark-blue;
+    background-color: $white;
+    line-height: 1.7;
+    margin: 10px 0;
+    padding: 0 10px;
+  }
+
+  a {
+    color: $yellow;
+  }
+}
+
+#about-bg {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+section {
+  background-color: $white;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+}
+
+.bg--1 {
+  background-color: $f-yellow;
+}
+
+.bg--2 {
+  background-color: $f-dark-blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+article {
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-bg {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  max-width: 375px;
+  transform: translateX(-50%);
+
+  @include bp-tablet {
+    max-width: none;
+  }
+
+  @include bp-laptop {
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+  }
+}
+
+.work-content {
+  width: 95%;
+  max-width: 720px;
+  height: calc(75% - 100px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  outline: 5px solid $f-dark-blue;
+  z-index: 2;
+
+  @include bp-laptop {
+    width: 75%;
+  }
+}
+
+.work-index {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  font-size: 25px;
+  font-family: fairwater-script, sans-serif;
+  font-weight: 700;
+}
+
+.work-text {
+  width: 100%;
+  background: $white;
+  padding: 10px;
+
+  @include bp-laptop {
+    padding: 20px;
+  }
+}
+
+.work-title {
+  position: relative;
+  padding: 10px 0;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+.work-btn {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  @include bp-tablet {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.cls-work {
+  fill:#081121;
+  stroke:#081121;
+  stroke-miterlimit:10;
+  stroke-width:1px;
+}
+
+.work-main {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.work-link {
+  padding: 10px 0;
+}
+
+nav {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  z-index: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    margin: 0 1em;
+    z-index: 2;
+  }
+}
+
+.arrow {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+  svg {
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    margin: 0 1em;
+  }
+}
+
+.arrow-next {
+  align-items: flex-end;
+}
+
+.cls-arrow {
+  fill:none;
+  stroke:#081121;
+  stroke-miterlimit:10;
+  stroke-width:2px;
+}

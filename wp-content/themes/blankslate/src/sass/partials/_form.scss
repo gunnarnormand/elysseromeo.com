@@ -1,0 +1,136 @@
+/* FORM STYLES
+  ========================================================================== */
+
+.hide-form-arrow {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+
+  @include bp-tablet {
+    width: 75%;
+  }
+
+  @include bp-desktop {
+    width: 50%;
+  }
+}
+
+.contact-form {
+  width: 100%;
+  height: calc(100% - 100px);
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 6;
+  color: $dark-blue;
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.form {
+  width: 100%;
+
+  @include bp-tablet {
+    width: 75%;
+  }
+
+  @include bp-desktop {
+    width: 50%;
+  }
+
+  h1 {
+    color: $dark-blue;
+    margin: 0 20px;
+    padding: 20px 0;
+  }
+}
+
+form {
+  label {
+    color: $dark-gray;
+  }
+
+  input,
+  textarea {
+    background: $f-light-gray;
+    border: 0;
+    line-height: 14px;
+    font-size: 14px;
+    margin: 10px 0;
+
+    @include bp-laptop {
+      line-height: 24px;
+      font-size: 24px;
+    }
+  }
+
+  textarea {
+    min-height: 50px;
+    font-size: 12px;
+
+    &::-webkit-resizer {
+      pointer-events: none;
+      border-bottom: 5px dashed $yellow;
+      border-right: 5px dashed $yellow;
+    }
+  }
+
+  button {
+    text-decoration: none;
+    color: $yellow;
+    margin: 0 20px;
+    padding: 20px 0;
+    border: 0;
+    background: transparent;
+  }
+}
+
+.wpforms-confirmation-container {
+  margin: 0 20px;
+  padding: 20px 0;
+}
+
+.wpforms-field {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+  padding: 10px 0;
+}
+
+.wpforms-error {
+  color: $red;
+}
+
+.wpforms-field-hp {
+  display: none;
+}
+
+.wpforms-submit-container {
+  position: relative;
+}
+
+.wpforms-submit {
+  cursor: pointer;
+}
+
+#submit-btn {
+  width: 120px;
+  height: 50px;
+  position: absolute;
+  top: 30px;
+  left: 5px;
+  z-index: -1;
+}
+
+.cls-submit {
+  fill: none;
+  stroke: #081121;
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
+}
