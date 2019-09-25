@@ -60,11 +60,11 @@ function onePageScroll(element, options) {
 
   	_swipeEvents(el);
   	document.addEventListener("swipeDown",  function(event){
-  	  if (!_hasClass(body, "disabled-onepage-scroll")) event.preventDefault();
+  	  if (!_hasClass(body, "disabled-onepage-scroll")) //event.preventDefault();
   		moveUp(el);
   	});
   	document.addEventListener("swipeUp", function(event){
-  		if (!_hasClass(body, "disabled-onepage-scroll")) event.preventDefault();
+  		if (!_hasClass(body, "disabled-onepage-scroll")) //event.preventDefault();
   		moveDown(el);
   	});
 
@@ -124,7 +124,7 @@ function onePageScroll(element, options) {
   	}
 
   	_mouseWheelHandler = function(event) {
-  		event.preventDefault();
+  		//event.preventDefault();
   		var delta = event.wheelDelta || -event.detail;
   		if (!_hasClass(body, "disabled-onepage-scroll")) _init_scroll(event, delta);
   	}
@@ -330,11 +330,11 @@ function onePageScroll(element, options) {
 
 			_swipeEvents(el);
 			document.addEventListener("swipeDown",  function(event){
-			  if (!_hasClass(body, "disabled-onepage-scroll")) event.preventDefault();
+			  if (!_hasClass(body, "disabled-onepage-scroll")) //event.preventDefault();
 				moveUp(el);
 			});
 			document.addEventListener("swipeUp", function(event){
-				if (!_hasClass(body, "disabled-onepage-scroll")) event.preventDefault();
+				if (!_hasClass(body, "disabled-onepage-scroll")) //event.preventDefault();
 				moveDown(el);
 			});
 
