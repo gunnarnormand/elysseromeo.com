@@ -1,5 +1,7 @@
 const app = (function () {
 
+	const $siteurl = ELYSSEROMEO.siteurl;
+	const $defaultImg = `/wp-content/themes/blankslate/dist/img/default.png`;
   const $loader = document.querySelector('#loader');
   const $loaderSVG = document.querySelector('#loaderSVG');
   const $main = document.querySelector('.main');
@@ -48,7 +50,13 @@ const app = (function () {
     const regex = /(\/wp-content)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
     const $images = document.querySelectorAll('.work-content');
     let imgSrcs = [];
-    $images.forEach(image => imgSrcs.push(image.style.cssText.match(regex)));
+    $images.forEach(image => {
+			if (image.style.cssText.match(regex) == null) {
+				image.style.cssText = $defaultImg;
+			} else {
+				imgSrcs.push(image.style.cssText.match(regex));
+			}
+		});
     const loaderTl = new TimelineMax({
       delay: 2
     });

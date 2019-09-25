@@ -20,5 +20,6 @@ Thumbs.db
 .sass-cache
 node_modules
 wp-config.php
+wp-config-sample.php
 .htaccess
 package-lock.json

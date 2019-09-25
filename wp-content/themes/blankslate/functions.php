@@ -17,11 +17,23 @@ function run_scripts() {
       wp_enqueue_script( 'onepagescroll', get_template_directory_uri() . '/dist/onepagescroll.js', array (), 1.1, true);
 
       wp_enqueue_script( 'app', get_template_directory_uri() . '/dist/js/app.js', array (), 1.1, true);
-      
+
     }
 }
 
 add_action( 'wp_enqueue_scripts', 'run_scripts' );
+
+
+/**
+* add_js_siteurl
+*
+* @since 1.0.0
+*/
+function add_js_siteurl() {
+	wp_localize_script('app', 'ELYSSEROMEO', array( 'siteurl' => get_option('siteurl') ));
+}
+
+add_action( 'wp_enqueue_scripts', 'add_js_siteurl' );
 
 /**
  * ACF add options page
