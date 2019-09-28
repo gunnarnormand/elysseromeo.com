@@ -441,7 +441,7 @@ html {
   box-sizing: border-box; }
 
 body {
-  font-family: futura-pt, sans-serif;
+  font-family: 'futura-pt', sans-serif;
   font-weight: 300;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -449,7 +449,7 @@ body {
 
 h1,
 h2 {
-  font-family: futura-pt, sans-serif;
+  font-family: 'futura-pt', sans-serif;
   font-weight: 300;
   font-style: normal;
   -webkit-margin-before: 0;
@@ -514,12 +514,12 @@ a {
   z-index: -1; }
 
 .futura-pt {
-  font-family: futura-pt, sans-serif;
+  font-family: 'futura-pt', sans-serif;
   font-weight: 300;
   font-style: normal; }
 
 .miller-banner-light {
-  font-family: miller-banner, serif;
+  font-family: 'miller-banner', serif;
   font-weight: 300;
   font-style: normal; }
 
@@ -709,8 +709,12 @@ header {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between; }
+  header h1 {
+    font-family: 'mina', serif;
+    font-weight: 400;
+    font-style: normal; }
   header a {
-    font-family: miller-banner, serif;
+    font-family: 'miller-banner', serif;
     font-weight: 300;
     font-style: normal;
     font-size: 125%;

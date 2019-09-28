@@ -61,8 +61,14 @@ header {
 	align-items: center;
 	justify-content: space-between;
 
+	h1 {
+		font-family: 'mina', serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+
 	a {
-		font-family: miller-banner, serif;
+		font-family: 'miller-banner', serif;
 		font-weight: 300;
 		font-style: normal;
 		font-size: 125%;
