@@ -76,14 +76,14 @@ form {
 
     &::-webkit-resizer {
       pointer-events: none;
-      border-bottom: 5px dashed $yellow;
-      border-right: 5px dashed $yellow;
+      border-bottom: 5px dashed $teal;
+      border-right: 5px dashed $teal;
     }
   }
 
   button {
     text-decoration: none;
-    color: $yellow;
+    color: $teal;
     margin: 0 20px;
     padding: 20px 0;
     border: 0;

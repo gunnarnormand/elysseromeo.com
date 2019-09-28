@@ -2,104 +2,107 @@
   ========================================================================== */
 
 * {
-  outline: none;
-  box-sizing: border-box;
+	outline: none;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: montserrat-alternates, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+	font-family: futura-pt, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
 }
 
 h1,
 h2 {
-  font-family: montserrat-alternates, sans-serif;
-  font-weight: 400;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
+	font-family: futura-pt, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
 }
 
 h1 {
-  font-size: 2em;
+	font-size: 2em;
 
-  @include bp-tablet {
-    font-size: 2.25em;
-  }
+	@include bp-tablet {
+		font-size: 2.25em;
+	}
 
-  @include bp-desktop {
-    font-size: 2.5em;
-  }
+	@include bp-desktop {
+		font-size: 2.5em;
+	}
 }
 
 h2 {
-  font-size: 1.5em;
+	font-size: 1.5em;
 
-  @include bp-tablet {
-    font-size: 1.75em;
-  }
+	@include bp-tablet {
+		font-size: 1.75em;
+	}
 
-  @include bp-desktop {
-    font-size: 2em;
-  }
+	@include bp-desktop {
+		font-size: 2em;
+	}
 }
 
 h3 {
-  font-size: 1em;
+	font-size: 1em;
 
-  @include bp-tablet {
-    font-size: 1.5em;
-  }
+	@include bp-tablet {
+		font-size: 1.5em;
+	}
 
-  @include bp-desktop {
-    font-size: 1.75em;
-  }
+	@include bp-desktop {
+		font-size: 1.75em;
+	}
 }
 
 p {
-  padding: .25em 0 .25em 0;
-  margin: 0;
-  font-size: 1em;
-  line-height: 1.2;
-  font-weight: 200;
+	padding: .25em 0;
+	margin: 0;
+	font-size: 1em;
+	line-height: 1.2;
+	font-weight: 200;
 
-  @include bp-tablet {
-    font-size: 1.25em;
-  }
+	@include bp-tablet {
+		font-size: 1.25em;
+	}
 
-  @include bp-desktop {
-    font-size: 1.5em;
-  }
+	@include bp-desktop {
+		font-size: 1.5em;
+	}
 }
 
 a {
-  text-decoration: none;
-  color: $dark-gray;
-  font-weight: 400;
-  position: relative;
+	text-decoration: none;
+	color: $dark-gray;
+	font-weight: 400;
+	position: relative;
 }
 
 .link-highlight {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: $f-yellow;
-  display: block;
-  z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background: $teal;
+	display: block;
+	z-index: -1;
 }
 
-.fairwater-open {
-  font-family: fairwater-open-serif, sans-serif;
-  font-weight: 400;
-  font-style: normal;
+.futura-pt {
+	font-family: futura-pt, sans-serif;
+	font-weight: 300;
+	font-style: normal;
 }
 
-.fairwater-script-bold {
-  font-family: fairwater-script, sans-serif;
-  font-weight: 700;
-  font-style: normal;
+.miller-banner-light {
+	font-family: miller-banner, serif;
+	font-weight: 300;
+	font-style: normal;
 }

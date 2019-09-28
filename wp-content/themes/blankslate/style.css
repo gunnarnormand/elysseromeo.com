@@ -317,13 +317,16 @@ template {
   ========================================================================== */
 /* ONEPAGESCROLL STYLES
    ========================================================================== */
-body, html {
+body,
+html {
   margin: 0;
   overflow: hidden;
   -webkit-transition: opacity 400ms;
   transition: opacity 400ms; }
 
-body, .onepage-wrapper, html {
+.onepage-wrapper,
+body,
+html {
   display: block;
   position: static;
   padding: 0;
@@ -375,14 +378,15 @@ body, .onepage-wrapper, html {
 .onepage-pagination li a {
   cursor: pointer;
   color: #3c4a53;
-  font-family: fairwater-open-serif, sans-serif;
-  font-weight: 700;
-  font-style: italic; }
+  font-family: miller-banner, serif;
+  font-weight: 300;
+  font-style: normal; }
 
 .onepage-pagination li a.active {
   color: #081121; }
 
-.disabled-onepage-scroll, .disabled-onepage-scroll .wrapper {
+.disabled-onepage-scroll,
+.disabled-onepage-scroll .wrapper {
   overflow: auto; }
 
 .disabled-onepage-scroll .onepage-wrapper .ops-section {
@@ -398,7 +402,9 @@ body, .onepage-wrapper, html {
 .disabled-onepage-scroll .onepage-pagination {
   display: none; }
 
-body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
+.disabled-onepage-scroll .onepage-wrapper,
+body.disabled-onepage-scroll,
+html {
   position: inherit; }
 
 .pagination-progress {
@@ -407,13 +413,13 @@ body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
   position: absolute;
   top: 0;
   left: 0;
-  background: #fff4dc;
+  background: #b7dde1;
   z-index: -1; }
 
 .current-progress {
   width: 0;
   height: 50px;
-  background: #fff4dc;
+  background: #b7dde1;
   position: absolute;
   bottom: 0;
   left: 0; }
@@ -421,11 +427,11 @@ body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
 .total-progress {
   width: 0;
   height: 50px;
-  background: #fff4dc;
+  background: #b7dde1;
   position: absolute;
   bottom: 0;
   left: 0;
-  opacity: 0.5; }
+  opacity: .5; }
 
 /* TYPOGRAPHY
   ========================================================================== */
@@ -435,14 +441,17 @@ body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
   box-sizing: border-box; }
 
 body {
-  font-family: montserrat-alternates, sans-serif;
+  font-family: futura-pt, sans-serif;
+  font-weight: 300;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden; }
 
 h1,
 h2 {
-  font-family: montserrat-alternates, sans-serif;
-  font-weight: 400;
+  font-family: futura-pt, sans-serif;
+  font-weight: 300;
+  font-style: normal;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
@@ -476,7 +485,7 @@ h3 {
       font-size: 1.75em; } }
 
 p {
-  padding: .25em 0 .25em 0;
+  padding: .25em 0;
   margin: 0;
   font-size: 1em;
   line-height: 1.2;
@@ -500,18 +509,18 @@ a {
   left: 0;
   width: 0;
   height: 100%;
-  background: #fff4dc;
+  background: #b7dde1;
   display: block;
   z-index: -1; }
 
-.fairwater-open {
-  font-family: fairwater-open-serif, sans-serif;
-  font-weight: 400;
+.futura-pt {
+  font-family: futura-pt, sans-serif;
+  font-weight: 300;
   font-style: normal; }
 
-.fairwater-script-bold {
-  font-family: fairwater-script, sans-serif;
-  font-weight: 700;
+.miller-banner-light {
+  font-family: miller-banner, serif;
+  font-weight: 300;
   font-style: normal; }
 
 /* FORM STYLES
@@ -591,12 +600,12 @@ form textarea {
   font-size: 12px; }
   form textarea::-webkit-resizer {
     pointer-events: none;
-    border-bottom: 5px dashed #ffad00;
-    border-right: 5px dashed #ffad00; }
+    border-bottom: 5px dashed #b7dde1;
+    border-right: 5px dashed #b7dde1; }
 
 form button {
   text-decoration: none;
-  color: #ffad00;
+  color: #b7dde1;
   margin: 0 20px;
   padding: 20px 0;
   border: 0;
@@ -701,6 +710,10 @@ header {
   -ms-flex-pack: justify;
   justify-content: space-between; }
   header a {
+    font-family: miller-banner, serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 125%;
     margin: 0 1em;
     z-index: 2; }
 
@@ -795,7 +808,7 @@ header {
     margin: 10px 0;
     padding: 0 10px; }
   .about-info a {
-    color: #ffad00; }
+    color: #b7dde1; }
 
 #about-bg {
   height: 100%;
@@ -812,10 +825,10 @@ section {
   height: 100%; }
 
 .bg--1 {
-  background-color: #fff4dc; }
+  background-color: #b7dde1; }
 
 .bg--2 {
-  background-color: #d3dae8;
+  background-color: #b7dde1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -889,7 +902,7 @@ article {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  outline: 5px solid #d3dae8;
+  outline: 5px solid #b7dde1;
   z-index: 2; }
   @media only screen and (min-width: 1024px) {
     .work-content {
@@ -900,7 +913,7 @@ article {
   top: -35px;
   right: 0;
   font-size: 25px;
-  font-family: fairwater-script, sans-serif;
+  font-family: miller-banner, serif;
   font-weight: 700; }
 
 .work-text {

@@ -354,7 +354,7 @@ function onePageScroll(element, options) {
 
 		// Cancel scroll if currently animating or within quiet period
 		if(timeNow - lastAnimation < quietPeriod + settings.animationTime) {
-			event.preventDefault();
+			//event.preventDefault();
 			return;
 		}
 

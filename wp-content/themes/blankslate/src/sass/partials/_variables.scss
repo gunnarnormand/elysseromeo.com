@@ -7,27 +7,27 @@ $larger-than-laptop-breakpoint: 'only screen and (min-width : 1024px)';
 $larger-than-desktop-breakpoint: 'only screen and (min-width : 1440px)';
 
 @mixin bp-mobile {
-    @media #{$larger-than-mobile-breakpoint} {
-        @content;
-    }
+	@media #{$larger-than-mobile-breakpoint} {
+		@content;
+	}
 }
 
 @mixin bp-tablet {
-    @media #{$larger-than-tablet-breakpoint} {
-        @content;
-    }
+	@media #{$larger-than-tablet-breakpoint} {
+		@content;
+	}
 }
 
 @mixin bp-laptop {
-    @media #{$larger-than-laptop-breakpoint} {
-        @content;
-    }
+	@media #{$larger-than-laptop-breakpoint} {
+		@content;
+	}
 }
 
 @mixin bp-desktop {
-    @media #{$larger-than-desktop-breakpoint} {
-        @content;
-    }
+	@media #{$larger-than-desktop-breakpoint} {
+		@content;
+	}
 }
 
 // primary colors
@@ -37,13 +37,12 @@ $dark-blue: #081121;
 $blue: #162d59;
 $dark-gray: #3c4a53;
 $light-gray: #cccccc;
-$yellow: #ffad00;
+$teal: #b7dde1;
 $red: #d01818;
 
 // faded colors
-$f-dark-blue: #d3dae8;
+$f-teal: #c5e4e7;
 $f-blue: #d4dcea;
 $f-blue-green: #cfd9e1;
 $f-dark-gray: #d0d2d4;
 $f-light-gray: #f2f2f2;
-$f-yellow: #fff4dc;

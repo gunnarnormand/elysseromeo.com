@@ -1,121 +1,128 @@
 /* ONEPAGESCROLL STYLES
    ========================================================================== */
 
-body, html {
-  margin: 0;
-  overflow: hidden;
-  -webkit-transition: opacity 400ms;
-  -moz-transition: opacity 400ms;
-  transition: opacity 400ms;
+body,
+html {
+	margin: 0;
+	overflow: hidden;
+	-webkit-transition: opacity 400ms;
+	-moz-transition: opacity 400ms;
+	transition: opacity 400ms;
 }
 
-body, .onepage-wrapper, html {
-  display: block;
-  position: static;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+.onepage-wrapper,
+body,
+html {
+	display: block;
+	position: static;
+	padding: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .onepage-wrapper {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: relative;
-  padding: 0;
-  -webkit-transform-style: preserve-3d;
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: relative;
+	padding: 0;
+	-webkit-transform-style: preserve-3d;
 }
 
 .onepage-wrapper .ops-section {
-  width: 100%;
-  height: 100%;
-  position: relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 .onepage-pagination {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 5;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	background-color: transparent;
 }
 
 .onepage-pagination li {
-  position: relative;
-  text-align: center;
-  flex-grow: 1;
-  align-self: center;
-  padding: 5px 0;
+	position: relative;
+	text-align: center;
+	flex-grow: 1;
+	align-self: center;
+	padding: 5px 0;
 }
 
 .onepage-pagination li a {
-  cursor: pointer;
-  color: $dark-gray;
-  font-family: fairwater-open-serif, sans-serif;
-  font-weight: 700;
-  font-style: italic;
+	cursor: pointer;
+	color: $dark-gray;
+	font-family: miller-banner, serif;
+	font-weight: 300;
+	font-style: normal;
 }
 
 .onepage-pagination li a.active {
-  color: $dark-blue;
+	color: $dark-blue;
 }
 
-.disabled-onepage-scroll, .disabled-onepage-scroll .wrapper {
-  overflow: auto;
+.disabled-onepage-scroll,
+.disabled-onepage-scroll .wrapper {
+	overflow: auto;
 }
 
 .disabled-onepage-scroll .onepage-wrapper .ops-section {
-  position: relative !important;
-  top: auto !important;
+	position: relative !important;
+	top: auto !important;
 }
+
 .disabled-onepage-scroll .onepage-wrapper {
-  -webkit-transform: none !important;
-  -moz-transform: none !important;
-  transform: none !important;
-  -ms-transform: none !important;
-  min-height: 100%;
+	-webkit-transform: none !important;
+	-moz-transform: none !important;
+	transform: none !important;
+	-ms-transform: none !important;
+	min-height: 100%;
 }
 
 .disabled-onepage-scroll .onepage-pagination {
-  display: none;
+	display: none;
 }
 
-body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
-  position: inherit;
+.disabled-onepage-scroll .onepage-wrapper,
+body.disabled-onepage-scroll,
+html {
+	position: inherit;
 }
 
 .pagination-progress {
-  width: 0;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: $f-yellow;
-  z-index: -1;
+	width: 0;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: $teal;
+	z-index: -1;
 }
 
 .current-progress {
-  width: 0;
-  height: 50px;
-  background: $f-yellow;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+	width: 0;
+	height: 50px;
+	background: $teal;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .total-progress {
-  width: 0;
-  height: 50px;
-  background: $f-yellow;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 0.5;
+	width: 0;
+	height: 50px;
+	background: $teal;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	opacity: .5;
 }

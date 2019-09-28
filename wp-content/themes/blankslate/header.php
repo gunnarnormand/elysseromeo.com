@@ -19,7 +19,7 @@
 				/>
 			</svg>
 		</a>
-		<a href="#" class="about">About</a>
+		<a href="#" class="about">about</a>
 	</header>
 	<div class="contact-form">
 		<div class="arrow hide-form-arrow">
@@ -28,7 +28,7 @@
 			</svg>
 		</div>
 		<div class="form">
-			<h1 class="fairwater-script-bold"><?php echo get_field('form_title', 'option') ?></h1>
+			<h1 class="miller-banner-light"><?php echo get_field('form_title', 'option') ?></h1>
 			<?php echo get_field('contact_form', 'option') ?>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 			  <path id="exitAbout" class="cls-exit" d="M54.25,27.62C55.1,26.81,56,26,56.8,25.19Q67.41,15,77.38,4.14c2.24-2.43-1.06-5.45-3.54-3.53C65.12,7.35,58.15,15.82,50.83,24c-.8.76-1.58,1.54-2.38,2.29-1.38,1.3-2.78,2.59-4.18,3.87S41,34,39.34,34.57a4,4,0,0,1-.53.12c-5-4.39-10.32-8.46-15.28-12.92C17.09,16,11.13,9.69,5.17,3.41,2.94,1.07-.53,4.58,1.63,7c6.2,6.76,12.61,13.32,19.28,19.61q5.34,5,10.87,9.85a40.37,40.37,0,0,0,3.4,2.93c-5,4.38-9.85,8.68-14.45,13.59L.7,74.24C-1.51,76.58,2,80.13,4.23,77.78l20-21.32c4.86-5.17,10.05-9.69,15.29-14.32l.4.37C51,53.25,59.48,66.36,72.43,75.08c2.67,1.81,5.18-2.52,2.52-4.31-12.6-8.49-20.89-21.49-31.66-32A150.25,150.25,0,0,0,54.25,27.62Z"/>
 			</svg>
 			<div class="about-info">
-				<h2 class="fairwater-script-bold"><?php echo get_field('title', 'option'); ?></h2>
+				<h2 class="miller-banner-light"><?php echo get_field('title', 'option'); ?></h2>
 				<?php echo get_field('body', 'option'); ?>
 				<p><?php echo get_field('resume', 'option'); ?> <a class="link" href="<?php echo get_field('resume_link', 'option'); ?>" download>résumé</a></p>
 				<p><?php echo get_field('contact', 'option'); ?> <a class="contact link" href="#"><?php echo get_field('contact_cta', 'option'); ?></a></p>
