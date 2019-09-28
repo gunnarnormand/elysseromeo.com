@@ -47,6 +47,7 @@ class WPForms_Smart_Tags {
 			'user_first_name'     => esc_html__( 'User First Name', 'wpforms-lite' ),
 			'user_last_name'      => esc_html__( 'User Last Name', 'wpforms-lite' ),
 			'user_email'          => esc_html__( 'User Email', 'wpforms-lite' ),
+			'user_meta key=""'    => esc_html__( 'User Meta', 'wpforms-lite' ),
 			'author_id'           => esc_html__( 'Author ID', 'wpforms-lite' ),
 			'author_display'      => esc_html__( 'Author Name', 'wpforms-lite' ),
 			'author_email'        => esc_html__( 'Author Email', 'wpforms-lite' ),
@@ -137,8 +138,7 @@ class WPForms_Smart_Tags {
 						break;
 
 					case 'user_ip':
-						$ip      = ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
-						$content = str_replace( '{' . $tag . '}', sanitize_text_field( $ip ), $content );
+						$content = str_replace( '{' . $tag . '}', wpforms_get_ip(), $content );
 						break;
 
 					case 'user_id':
@@ -257,8 +257,7 @@ class WPForms_Smart_Tags {
 		if ( ! empty( $query_vars[1] ) ) {
 
 			foreach ( $query_vars[1] as $key => $query_var ) {
-
-				$value   = ! empty( $_GET[ $query_var ] ) ? sanitize_text_field( $_GET[ $query_var ] ) : '';
+				$value   = ! empty( $_GET[ $query_var ] ) ? wp_unslash( sanitize_text_field( $_GET[ $query_var ] ) ) : ''; // phpcs:ignore
 				$content = str_replace( $query_vars[0][ $key ], $value, $content );
 			}
 		}
@@ -275,24 +274,35 @@ class WPForms_Smart_Tags {
 			}
 		}
 
-		// Field smart tags (settings, etc).
+		// User meta smart tags.
+		preg_match_all( "/\{user_meta key=\"(.+?)\"\}/", $content, $user_metas );
+
+		if ( ! empty( $user_metas[1] ) ) {
+
+			foreach ( $user_metas[1] as $key => $user_meta ) {
+
+				$value   = is_user_logged_in() ? get_user_meta( get_current_user_id(), sanitize_text_field( $user_meta ), true )  : '';
+				$content = str_replace( $user_metas[0][ $key ], $value, $content );
+			}
+		}
+
+		// Field smart tag to get data from 'value'.
 		preg_match_all( "/\{field_id=\"(.+?)\"\}/", $content, $ids );
 
-		// We can only process field smart tags if we have $fields
+		// We can only process field smart tags if we have $fields.
 		if ( ! empty( $ids[1] ) && ! empty( $fields ) ) {
-
-
 
 			foreach ( $ids[1] as $key => $parts ) {
 				$field_parts = explode( '|', $parts );
 				$field_id    = $field_parts[0];
 				$field_key   = ! empty( $field_parts[1] ) ? sanitize_key( $field_parts[1] ) : 'value';
 				$value       = ! empty( $fields[ $field_id ][ $field_key ] ) ? wpforms_sanitize_textarea_field( $fields[ $field_id ][ $field_key ] ) : '';
+				$value       = apply_filters( 'wpforms_field_smart_tag_value', $value );
 				$content     = str_replace( '{field_id="' . $parts . '"}', $value, $content );
 			}
 		}
 
-		// Field value smart tags (settings, etc).
+		// Field smart tag to get data from 'value_raw'.
 		preg_match_all( "/\{field_value_id=\"(.+?)\"\}/", $content, $value_ids );
 
 		// We can only process field smart tags if we have $fields.
@@ -307,6 +317,28 @@ class WPForms_Smart_Tags {
 				}
 
 				$content = str_replace( '{field_value_id="' . $field_id . '"}', $value, $content );
+			}
+		}
+
+		// Field smart tag to get HTML-postprocessed value (as seen in {all_fields}).
+		preg_match_all( '/\{field_html_id="(.+?)"\}/', $content, $html_ids );
+
+		// We can only process field smart tags if we have $fields.
+		if ( ! empty( $html_ids[1] ) && ! empty( $fields ) ) {
+
+			foreach ( $html_ids[1] as $key => $field_id ) {
+				$value = '';
+				if ( ! empty( $fields[ $field_id ] ) ) {
+					$value = apply_filters(
+						'wpforms_html_field_value',
+						wpforms_decode_string( $fields[ $field_id ]['value'] ),
+						$fields[ $field_id ],
+						$form_data,
+						'smart-tag'
+					);
+				}
+
+				$content = str_replace( '{field_html_id="' . $field_id . '"}', $value, $content );
 			}
 		}
 

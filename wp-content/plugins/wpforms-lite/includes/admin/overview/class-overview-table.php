@@ -175,7 +175,7 @@ class WPForms_Overview_Table extends WP_List_Table {
 		// Preview.
 		$row_actions['preview_'] = sprintf(
 			'<a href="%s" title="%s" target="_blank" rel="noopener noreferrer">%s</a>',
-			esc_url( wpforms()->preview->form_preview_url( $form->ID ) ),
+			esc_url( wpforms_get_form_preview_url( $form->ID ) ),
 			esc_html__( 'View preview', 'wpforms-lite' ),
 			esc_html__( 'Preview', 'wpforms-lite' )
 		);
@@ -248,9 +248,12 @@ class WPForms_Overview_Table extends WP_List_Table {
 		}
 
 		$ids    = array_map( 'absint', $ids );
-		$action = ! empty( $_REQUEST['action'] ) ? $_REQUEST['action'] : false;
+		$action = ! empty( $_REQUEST['action'] ) ? $_REQUEST['action'] : false; // phpcs:ignore
 
-		if ( empty( $ids ) || empty( $action ) ) {
+		// Checking the sortable column link.
+		$is_orderby_link = ! empty( $_REQUEST['orderby'] ) && ! empty( $_REQUEST['order'] );
+
+		if ( empty( $ids ) || empty( $action ) || $is_orderby_link ) {
 			return;
 		}
 
@@ -328,7 +331,7 @@ class WPForms_Overview_Table extends WP_List_Table {
 	public function no_items() {
 		printf(
 			wp_kses(
-				/* translators: %s - admin area page builder page URL. */
+				/* translators: %s - WPForms Builder page. */
 				__( 'Whoops, you haven\'t created a form yet. Want to <a href="%s">give it a go</a>?', 'wpforms-lite' ),
 				array(
 					'a' => array(

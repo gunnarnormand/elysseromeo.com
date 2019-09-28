@@ -184,10 +184,14 @@
 	padding: 12px 5px 12px 18px;
 	border-radius: 2px;
 	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
-#wpforms-panel-fields .wpforms-add-fields-button.upgrade-modal {
-	opacity: 0.5;
+#wpforms-panel-fields .wpforms-add-fields-button.upgrade-modal,
+#wpforms-panel-fields .wpforms-add-fields-button.education-modal {
+	opacity: 0.6;
 }
 
 #wpforms-panel-fields .wpforms-add-fields-button:nth-child(odd) {
@@ -230,11 +234,16 @@
 }
 
 #wpforms-panel-fields .wpforms-field-option-row input[type=text],
+#wpforms-panel-fields .wpforms-field-option-row input[type=number],
 #wpforms-panel-fields .wpforms-field-option-row textarea {
 	width: 99%;
 	border: 1px solid #d6d6d6;
 	padding: 6px 8px;
 	box-shadow: none;
+}
+
+#wpforms-panel-fields .wpforms-field-option-row input[type=number] {
+	width: 20%;
 }
 
 #wpforms-panel-fields .wpforms-field-option-row input[type=text].has-before {
@@ -323,6 +332,10 @@
 	border-bottom: 1px solid #b1bac3;
 	text-decoration: none;
 	outline: 0;
+}
+
+#wpforms-panel-fields .wpforms-field-option-group-toggle.upgrade-modal {
+	opacity: 0.6;
 }
 
 #wpforms-panel-fields .wpforms-field-option-group-toggle span {
@@ -499,11 +512,13 @@
 /* Payment Multiple Items and Dropdown Items */
 
 #wpforms-panel-fields .wpforms-field-option-payment-multiple .wpforms-field-option-row-choices li input[type=text],
+#wpforms-panel-fields .wpforms-field-option-payment-checkbox .wpforms-field-option-row-choices li input[type=text],
 #wpforms-panel-fields .wpforms-field-option-payment-select .wpforms-field-option-row-choices li input[type=text] {
 	width: 45%;
 }
 
 #wpforms-panel-fields .wpforms-field-option-payment-multiple .wpforms-field-option-row-choices li input[type=text].value,
+#wpforms-panel-fields .wpforms-field-option-payment-checkbox .wpforms-field-option-row-choices li input[type=text].value,
 #wpforms-panel-fields .wpforms-field-option-payment-select .wpforms-field-option-row-choices li input[type=text].value {
 	display: block;
 	margin: 0 0 0 5px;

@@ -193,13 +193,24 @@ class WPForms_Builder_Panel_Fields extends WPForms_Builder_Panel {
 
 			foreach ( $group['fields'] as $field ) {
 
-				$class = ! empty( $field['class'] ) ? sanitize_html_class( $field['class'] ) : '';
+				$atts = apply_filters( 'wpforms_builder_field_button_attributes', array(
+					'id'    => 'wpforms-add-fields-' . $field['type'],
+					'class' => array( 'wpforms-add-fields-button' ),
+					'data'  => array(
+						'field-type' => $field['type'],
+					),
+					'atts'  => array(),
+				), $field, $this->form_data );
 
-				echo '<button class="wpforms-add-fields-button ' . $class . '" id="wpforms-add-fields-' . esc_attr( $field['type'] ) . '" data-field-type="' . esc_attr( $field['type'] ) . '">';
-				if ( $field['icon'] ) {
-					echo '<i class="fa ' . esc_attr( $field['icon'] ) . '"></i> ';
+				if ( ! empty( $field['class'] ) ) {
+					$atts['class'][] = $field['class'];
 				}
-				echo esc_html( $field['name'] );
+
+				echo '<button ' . wpforms_html_attributes( $atts['id'], $atts['class'], $atts['data'], $atts['atts'] ) . '>';
+					if ( $field['icon'] ) {
+						echo '<i class="fa ' . esc_attr( $field['icon'] ) . '"></i> ';
+					}
+					echo esc_html( $field['name'] );
 				echo '</button>';
 			}
 
@@ -274,7 +285,7 @@ class WPForms_Builder_Panel_Fields extends WPForms_Builder_Panel {
 
 			printf( '<a href="#" class="wpforms-field-duplicate" title="%s"><i class="fa fa-files-o" aria-hidden="true"></i></a>', esc_html__( 'Duplicate Field', 'wpforms-lite' ) );
 
-			printf( '<a href="#" class="wpforms-field-delete" title="%s"><i class="fa fa-times-circle" aria-hidden="true"></i></a>', esc_html__( 'Delete Field', 'wpforms-lite' ) );
+			printf( '<a href="#" class="wpforms-field-delete" title="%s"><i class="fa fa-trash" aria-hidden="true"></i></a>', esc_html__( 'Delete Field', 'wpforms-lite' ) );
 
 			printf( '<span class="wpforms-field-helper">%s</span>', esc_html__( 'Click to edit. Drag to reorder.', 'wpforms-lite' ) );
 
@@ -305,7 +316,7 @@ class WPForms_Builder_Panel_Fields extends WPForms_Builder_Panel {
 	 */
 	public function field_preview_templates() {
 
-		// Checkbox, Radio, and Payment Multiple field choices.
+		// Checkbox, Radio, and Payment Multiple/Checkbox field choices.
 		?>
 		<script type="text/html" id="tmpl-wpforms-field-preview-checkbox-radio-payment-multiple">
 			<# if ( data.settings.choices_images ) { #>
@@ -346,4 +357,4 @@ class WPForms_Builder_Panel_Fields extends WPForms_Builder_Panel {
 
 }
 
-new WPForms_Builder_Panel_Fields;
+new WPForms_Builder_Panel_Fields();
