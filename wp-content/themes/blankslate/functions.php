@@ -14,7 +14,7 @@ function run_scripts() {
 
     if ( is_front_page() ) {
 
-      wp_enqueue_script( 'onepagescroll', get_template_directory_uri() . '/dist/onepagescroll.js', array (), 1.1, true);
+      wp_enqueue_script( 'onepagescroll', get_template_directory_uri() . '/dist/js/onepagescroll.js', array (), 1.1, true);
 
       wp_enqueue_script( 'app', get_template_directory_uri() . '/dist/js/app.js', array (), 1.1, true);
 
