@@ -3,6 +3,7 @@ const app = (function () {
 	const $siteurl = ELYSSEROMEO.siteurl;
 	const $defaultImg = `/wp-content/themes/blankslate/dist/img/default.png`;
   const $loader = document.querySelector('#loader');
+	const $loaderGIF = document.querySelector('#loaderGIF');
   const $loaderSVG = document.querySelector('#loaderSVG');
   const $main = document.querySelector('.main');
   const $header = document.querySelector('header');
@@ -10,7 +11,6 @@ const app = (function () {
   const $logo = $header.firstElementChild;
   const $firstSection = $main.firstElementChild;
   const $firstContent = $firstSection.querySelector('.work-content');
-  // const $firstBgSvg = $firstSection.querySelector('.article-bg');
   const $aboutLink = document.querySelector('.about');
   const $aboutClose = document.querySelector('.about__close');
   const $aboutPage = document.querySelector('.about__page');
@@ -37,16 +37,6 @@ const app = (function () {
     const $footerNav = document.querySelector('.onepage-pagination');
     const $footerLinks = $footerNav.children;
     const $firstFooterNavItem = $footerNav.firstElementChild.firstElementChild;
-
-    const loadingTl = new TimelineMax({
-      delay: 0,
-      smoothChildTiming: true,
-      repeat: -1,
-      yoyo: true,
-    });
-    loadingTl
-      .set($loaderSVG, {autoAlpha:1})
-      .fromTo($loaderSVG, 2, {drawSVG:'0% 0%'},{ drawSVG:'0% 100%', ease: Expo.easeInOut});
     const regex = /(\/wp-content)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
     const $images = document.querySelectorAll('.work-content');
     let imgSrcs = [];
@@ -57,6 +47,14 @@ const app = (function () {
 				imgSrcs.push(image.style.cssText.match(regex));
 			}
 		});
+		const loadingTl = new TimelineMax({
+      delay: 0,
+      smoothChildTiming: true,
+      repeat: -1,
+      yoyo: true,
+    });
+    loadingTl
+      .fromTo($loaderSVG, 2, {drawSVG:'0% 100%'},{ drawSVG:'0% 0%', ease: Expo.easeInOut});
     const loaderTl = new TimelineMax({
       delay: 2
     });
@@ -68,16 +66,18 @@ const app = (function () {
         loadedImages++;
         if (loadedImages === imgSrcs.length) {
           loaderTl
-          .to($loader, 3, {autoAlpha:0, force3D:true, ease: Expo.easeInOut}, 'start')
-          .from($logo, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=2')
-          .from($aboutLink, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=3')
-          .from(prevArrow, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeIn}, 'start+=3.5')
-          .from(nextArrow, 3, {xPercent: 100, autoAlpha:0, force3D:true, ease: Expo.easeIn}, 'start+=3.5')
-          // .from($firstBgSvg, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=3.5')
-          .from($firstContent, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=4')
-          .staggerFrom($footerLinks, 1, {yPercent:200, autoAlpha:0, force3D:true, ease: Back.easeOut.config(1.5)}, .1, 'start+=4.5')
-          .to($firstFooterNavItem, 0.75, {width:'100%', ease: Expo.easeOut}, 'start+=4.75')
-          ;
+						.to($loaderGIF, 0.25, {autoAlpha:0, ease: Expo.easeInOut})
+						.set($loaderGIF, {display:'none'})
+						.to($loaderSVG, 0.25, {autoAlpha:1, ease: Expo.easeInOut})
+	          .to($loader, 3, {autoAlpha:0, force3D:true, ease: Expo.easeInOut}, 'start+=2')
+	          .from($logo, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=4')
+	          .from($aboutLink, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=5')
+	          .from(prevArrow, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeIn}, 'start+=5.5')
+	          .from(nextArrow, 3, {xPercent: 100, autoAlpha:0, force3D:true, ease: Expo.easeIn}, 'start+=5.5')
+	          .from($firstContent, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=6')
+	          .staggerFrom($footerLinks, 1, {yPercent:200, autoAlpha:0, force3D:true, ease: Back.easeOut.config(1.5)}, .1, 'start+=6.5')
+	          .to($firstFooterNavItem, 0.75, {width:'100%', ease: Expo.easeOut}, 'start+=6.75')
+	          ;
         }
       });
     }

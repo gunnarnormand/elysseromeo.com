@@ -36,6 +36,13 @@ Text Domain: elysseromeo
 	text-align: center;
 }
 
+#loaderGIF {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 #loaderSVG {
 	opacity: 0;
 	visibility: hidden;
@@ -65,6 +72,10 @@ header {
 		font-family: 'mina', serif;
 		font-weight: 400;
 		font-style: normal;
+		font-size: 1.5em;
+		@include bp-tablet {
+			font-size: 2em;
+		}
 	}
 
 	a {
