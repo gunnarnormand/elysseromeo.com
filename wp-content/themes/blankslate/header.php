@@ -8,15 +8,16 @@
 </head>
 <body <?php body_class(); ?>>
 	<div id="loader">
+			<img src="" alt="">
 			<svg xmlns="http://www.w3.org/2000/svg" style="width:300px; height:300px;" viewBox="0 0 286.04 285.41">
-			<path id="loaderSVG" class="cls-loader" d="M92,5.63C72.12-4.81,45.53,1.31,30.87,18.34s-17.12,43-7.52,63.3S53.5,116.22,75.65,120c-37.1,12.42-66.3,46-73.49,84.42-3.62,19.4-1.65,40.53,9.19,57s31.66,27,50.83,22.39c22.76-5.51,36.08-28.76,44.9-50.45A428,428,0,0,0,135.22,20.74c-3.48,26.3-2,53-.47,79.46Q139.9,190.52,145,280.81a692.06,692.06,0,0,1,6.35-189.13c2.8-16.21,6.24-32.49,13.2-47.4,5.34-11.45,15.46-23.25,28-21.55,11.71,1.6,18.43,14.09,21.67,25.45C219,65,220.38,83,215.87,99.83s-15.3,32.36-30.7,40.54-35.42,8.09-49.65-2a366,366,0,0,0,41.79,88.78c8.14,12.59,17.24,24.85,29.2,33.89s27.2,14.59,42,12.29c22-3.42,39.21-25.89,36.79-48"/>
+				<path id="loaderSVG" class="cls-loader" d="M92,5.63C72.12-4.81,45.53,1.31,30.87,18.34s-17.12,43-7.52,63.3S53.5,116.22,75.65,120c-37.1,12.42-66.3,46-73.49,84.42-3.62,19.4-1.65,40.53,9.19,57s31.66,27,50.83,22.39c22.76-5.51,36.08-28.76,44.9-50.45A428,428,0,0,0,135.22,20.74c-3.48,26.3-2,53-.47,79.46Q139.9,190.52,145,280.81a692.06,692.06,0,0,1,6.35-189.13c2.8-16.21,6.24-32.49,13.2-47.4,5.34-11.45,15.46-23.25,28-21.55,11.71,1.6,18.43,14.09,21.67,25.45C219,65,220.38,83,215.87,99.83s-15.3,32.36-30.7,40.54-35.42,8.09-49.65-2a366,366,0,0,0,41.79,88.78c8.14,12.59,17.24,24.85,29.2,33.89s27.2,14.59,42,12.29c22-3.42,39.21-25.89,36.79-48"/>
 			</svg>
 	</div>
 	<header>
 		<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<h1 id="logo">elysse romeo</h1>
+			<h1 id="logo"><?php _e('elysse romeo', 'elysseromeo') ?></h1>
 		</a>
-		<a href="#" class="about">about</a>
+		<a href="#" class="about"><?php _e('about', 'elysseromeo') ?></a>
 	</header>
 	<div class="contact-form">
 		<div class="arrow hide-form-arrow">
@@ -44,7 +45,7 @@
 		<svg id="about-bg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 475 440">
 			<defs>
 				<style>
-					.cls-2{fill:#4f6a9e;}.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9{opacity:0.25;}.cls-3{fill:#406780;}.cls-4{fill:#ffd07a;}.cls-5{fill:#ccc;}.cls-6{fill:#5371a7;}.cls-7{fill:#405780;}.cls-8{fill:#3c4a53;}.cls-9{fill:#804040;}.cls-10{fill:url(#New_Pattern_2);}
+					.cls-2{fill:#b7dde1;}.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9{opacity:0.25;}.cls-3{fill:#406780;}.cls-4{fill:#b7dde1;}.cls-5{fill:#ccc;}.cls-6{fill:##f9f9f9;}.cls-7{fill:#405780;}.cls-8{fill:#3c4a53;}.cls-9{fill:#804040;}.cls-10{fill:url(#New_Pattern_2);}
 				</style>
 			</defs>
 			<pattern id="New_Pattern_2" data-name="New Pattern 2" width="475" height="440" patternTransform="translate(-237.5 -220)" patternUnits="userSpaceOnUse" viewBox="0 0 475 440">
