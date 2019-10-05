@@ -606,6 +606,7 @@ form textarea {
 form button {
   text-decoration: none;
   color: #b7dde1;
+  font-weight: 600;
   margin: 0 20px;
   padding: 20px 0;
   border: 0;
@@ -691,13 +692,13 @@ form button {
 
 .cls-loader {
   fill: none;
-  stroke: #162d59;
+  stroke: #3c4a53;
   stroke-miterlimit: 10;
   stroke-width: 1px; }
 
 header {
   width: 100%;
-  height: 50px;
+  height: 65px;
   position: fixed;
   top: 0;
   left: 0;
@@ -733,7 +734,7 @@ header {
     z-index: 2; }
 
 .logo {
-  height: 50px; }
+  height: 65px; }
   .logo svg {
     height: 100%;
     width: auto; }
@@ -743,9 +744,9 @@ header {
 
 .about__page {
   width: 100%;
-  height: calc(100% - 100px);
+  height: calc(100% - 115px);
   position: absolute;
-  top: 50px;
+  top: 65px;
   left: 0;
   z-index: 4;
   background-color: #fff;
@@ -822,8 +823,12 @@ header {
     line-height: 1.7;
     margin: 10px 0;
     padding: 0 10px; }
+    @media only screen and (min-width: 768px) {
+      .about-info p {
+        font-size: 1.75em; } }
   .about-info a {
-    color: #b7dde1; }
+    color: #b7dde1;
+    font-weight: 600; }
 
 #about-bg {
   height: 100%;
@@ -899,7 +904,7 @@ article {
 .work-content {
   width: 95%;
   max-width: 720px;
-  height: calc(75% - 100px);
+  height: calc(75% - 115px);
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;

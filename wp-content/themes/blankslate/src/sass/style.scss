@@ -50,14 +50,14 @@ Text Domain: elysseromeo
 
 .cls-loader {
 	fill: none;
-	stroke: #162d59;
+	stroke: $dark-gray;
 	stroke-miterlimit: 10;
 	stroke-width: 1px;
 }
 
 header {
 	width: 100%;
-	height: 50px;
+	height: 65px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -89,7 +89,7 @@ header {
 }
 
 .logo {
-	height: 50px;
+	height: 65px;
 
 	svg {
 		height: 100%;
@@ -103,9 +103,9 @@ header {
 
 .about__page {
 	width: 100%;
-	height: calc(100% - 100px);
+	height: calc(100% - 115px);
 	position: absolute;
-	top: 50px;
+	top: 65px;
 	left: 0;
 	z-index: 4;
 	background-color: $white;
@@ -175,10 +175,15 @@ header {
 		line-height: 1.7;
 		margin: 10px 0;
 		padding: 0 10px;
+
+		@include bp-tablet {
+			font-size: 1.75em;
+		}
 	}
 
 	a {
 		color: $teal;
+		font-weight: 600;
 	}
 }
 
@@ -245,7 +250,7 @@ article {
 .work-content {
 	width: 95%;
 	max-width: 720px;
-	height: calc(75% - 100px);
+	height: calc(75% - 115px);
 	position: relative;
 	display: flex;
 	flex-direction: column;
