@@ -90,10 +90,10 @@ header {
 
 .logo {
 	height: 65px;
-
-	svg {
-		height: 100%;
-		width: auto;
+	display: flex;
+	align-items: center;
+	@include bp-tablet {
+		align-items: flex-start;
 	}
 }
 
@@ -167,6 +167,15 @@ header {
 
 	h2 {
 		color: $dark-blue;
+		font-size: 2em;
+
+		@include bp-tablet {
+			font-size: 2.25em;
+		}
+
+		@include bp-desktop {
+			font-size: 2.5em;
+		}
 	}
 
 	p {
