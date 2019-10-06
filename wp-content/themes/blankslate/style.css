@@ -574,10 +574,17 @@ a {
   @media only screen and (min-width: 1440px) {
     .form {
       width: 50%; } }
-  .form h1 {
+  .form h2 {
     color: #081121;
     margin: 0 20px;
-    padding: 20px 0; }
+    padding: 20px 0;
+    font-size: 2em; }
+    @media only screen and (min-width: 768px) {
+      .form h2 {
+        font-size: 2.25em; } }
+    @media only screen and (min-width: 1440px) {
+      .form h2 {
+        font-size: 2.5em; } }
 
 form label {
   color: #3c4a53; }
@@ -721,7 +728,8 @@ header {
     font-family: 'mina', serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.5em; }
+    font-size: 1.5em;
+    text-transform: lowercase; }
     @media only screen and (min-width: 768px) {
       header h1 {
         font-size: 2em; } }

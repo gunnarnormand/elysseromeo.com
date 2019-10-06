@@ -15,7 +15,7 @@
 	</div>
 	<header>
 		<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<h1 id="logo"><?php _e('elysse romeo', 'elysseromeo') ?></h1>
+			<h1 id="logo"><?php _e('Elysse Romeo', 'elysseromeo') ?></h1>
 		</a>
 		<a href="#" class="about"><?php _e('about', 'elysseromeo') ?></a>
 	</header>
@@ -26,7 +26,7 @@
 			</svg>
 		</div>
 		<div class="form">
-			<h1 class="miller-banner-light"><?php echo get_field('form_title', 'option') ?></h1>
+			<h2 class="miller-banner-light"><?php echo get_field('form_title', 'option') ?></h2>
 			<?php echo get_field('contact_form', 'option') ?>
 		</div>
 	</div>
