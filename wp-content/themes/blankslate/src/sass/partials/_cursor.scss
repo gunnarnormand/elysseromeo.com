@@ -1,0 +1,25 @@
+/* CURSOR
+  ========================================================================== */
+
+.cursor {
+	position: fixed;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
+
+.cursor--small {
+	width: 5px;
+	height: 5px;
+	left: -2.5px;
+	top: -2.5px;
+	border-radius: 50%;
+	z-index: 99;
+	background: $red;
+}
+
+.cursor--canvas {
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
+}
