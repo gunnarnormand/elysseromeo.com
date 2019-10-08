@@ -1,6 +1,14 @@
 /* CURSOR
   ========================================================================== */
 
+body {
+	cursor: none;
+
+	a {
+		cursor: none;
+	}
+}
+
 .cursor {
 	position: fixed;
 	left: 0;

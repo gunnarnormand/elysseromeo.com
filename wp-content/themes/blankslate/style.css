@@ -662,6 +662,11 @@ form button {
 
 /* CURSOR
   ========================================================================== */
+body {
+  cursor: none; }
+  body a {
+    cursor: none; }
+
 .cursor {
   position: fixed;
   left: 0;

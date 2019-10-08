@@ -32,6 +32,7 @@ const app = (function () {
   const $workBtns = document.querySelectorAll('.work-btn');
   const $links = document.querySelectorAll('a');
   const $aboutPageLinks = document.querySelectorAll('a.link');
+	const innerCursor = document.querySelector(".cursor--small");
 
   const loaderModule = () => {
     const $footerNav = document.querySelector('.onepage-pagination');
@@ -111,6 +112,39 @@ const app = (function () {
       }
     }
   }
+
+	const cursorModule = () => {
+
+		let clientX = -100;
+		let clientY = -100;
+
+		const initCursor = () => {
+
+			document.addEventListener("mousemove", e => {
+		    clientX = e.clientX;
+		    clientY = e.clientY;
+		  });
+
+		  const render = () => {
+
+		    TweenMax.set(innerCursor, {
+		      x: clientX,
+		      y: clientY
+		    });
+
+		    requestAnimationFrame(render);
+		  };
+
+		  requestAnimationFrame(render);
+
+		};
+
+		initCursor();
+
+
+
+
+	}
 
   const init = () => {
 
@@ -506,6 +540,7 @@ const app = (function () {
 
     loaderModule();
     formModule();
+		cursorModule();
   }
 
   return {
