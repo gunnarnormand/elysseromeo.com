@@ -12,6 +12,10 @@ function run_scripts() {
 
     wp_enqueue_script( 'SplitTextPlugin', get_template_directory_uri() . '/dist/gsap-min/utils/SplitText.min.js', array (), 1.1, true);
 
+		wp_enqueue_script( 'paper.js', 'https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.0/paper-core.min.js', array (), null, true);
+
+		wp_enqueue_script( 'simplex-noise', 'https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js', array (), null, true);
+
     if ( is_front_page() ) {
 
       wp_enqueue_script( 'onepagescroll', get_template_directory_uri() . '/dist/js/onepagescroll.js', array (), 1.1, true);
