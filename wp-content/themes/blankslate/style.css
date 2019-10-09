@@ -376,7 +376,6 @@ html {
   padding: 5px 0; }
 
 .onepage-pagination li a {
-  cursor: pointer;
   color: #3c4a53;
   font-family: miller-banner, serif;
   font-weight: 300;
@@ -643,9 +642,6 @@ form button {
 .wpforms-submit-container {
   position: relative; }
 
-.wpforms-submit {
-  cursor: pointer; }
-
 #submit-btn {
   width: 120px;
   height: 50px;
@@ -664,7 +660,8 @@ form button {
   ========================================================================== */
 body {
   cursor: none; }
-  body a {
+  body a,
+  body button {
     cursor: none; }
 
 .cursor {
@@ -680,7 +677,7 @@ body {
   top: -2.5px;
   border-radius: 50%;
   z-index: 99;
-  background: #d01818; }
+  background: #b7dde1; }
 
 .cursor--canvas {
   width: 100vw;
@@ -812,7 +809,6 @@ header {
   visibility: hidden; }
 
 .about__close {
-  cursor: pointer;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1000,7 +996,6 @@ article {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
 
 .work-btn {
-  cursor: pointer;
   width: 20px;
   height: 20px;
   position: absolute;
@@ -1053,7 +1048,6 @@ nav {
     z-index: 2; }
 
 .arrow {
-  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
