@@ -132,7 +132,6 @@ const app = (function () {
 		  };
 		  window.requestAnimationFrame(render);
 		};
-
 		initCursor();
 
 		let lastX = 0;
@@ -153,11 +152,9 @@ const app = (function () {
 			const strokeWidth = 1;
 			const segments = 8;
 			const radius = 15;
-
 			const noiseScale = 150;
 			const noiseRange = 4;
 			let isNoisy = false;
-
 			const polygon = new paper.Path.RegularPolygon(
 				new paper.Point(0,0),
 				segments,
@@ -168,28 +165,41 @@ const app = (function () {
   		polygon.smooth();
   		group = new paper.Group([polygon]);
   		group.applyMatrix = false;
-
 			const noiseObjects = polygon.segments.map(() => new SimplexNoise());
   		let bigCoordinates = [];
-
 			const lerp = (a, b, n) => {
 				return (1 - n) * a + n * b;
 			};
-
 			const map = (value, in_min, in_max, out_min, out_max) => {
 				return (
 					((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
 				);
 			};
-
 			paper.view.onFrame = event => {
 				lastX = lerp(lastX, clientX, 0.2);
 				lastY = lerp(lastY, clientY, 0.2);
 				group.position = new paper.Point(lastX, lastY);
 			}
 		}
-
 		initCanvas();
+
+		const initCursorHovers = () => {
+			const handleCursorMouseEnter = e => {
+				const navItem = e.currentTarget;
+				const navItemBox = navItem.getBoundingClientRect();
+				stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
+				stuckY = Math.round(navItemBox.top + navItemBox.height / 2);
+				isStuck = true;
+			};
+			const handleCursorMouseLeave = () => {
+				isStuck = false;
+			};
+			$links.forEach(link => {
+				link.addEventListener("mouseenter", handleCursorMouseEnter);
+				link.addEventListener("mouseleave", handleCursorMouseLeave);
+			});
+		}
+		initCursorHovers();
 
 
 
