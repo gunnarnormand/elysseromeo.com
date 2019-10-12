@@ -36,6 +36,7 @@ const app = (function () {
   const $aboutPageLinks = document.querySelectorAll('a.link');
 	const innerCursor = document.querySelector(".cursor--small");
 	const canvas = document.querySelector(".cursor--canvas");
+	const $submitBtn =  document.querySelector('button[type="submit"]');
 
   const loaderModule = () => {
     const $footerNav = document.querySelector('.onepage-pagination');
@@ -277,8 +278,8 @@ const app = (function () {
 				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
 				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
 			});
-			$aboutClose.addEventListener("mouseenter", handleBasicCursorMouseEnter);
-			$aboutClose.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+			$aboutClose.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+			$aboutClose.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
 			$allArrowSvgs.forEach(link => {
 				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
 				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
@@ -294,6 +295,8 @@ const app = (function () {
 			});
 			$logo.addEventListener("mouseenter", handleBasicCursorMouseEnter);
 			$logo.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+			$submitBtn.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+			$submitBtn.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
 
 		}
 		initCursorHovers();
