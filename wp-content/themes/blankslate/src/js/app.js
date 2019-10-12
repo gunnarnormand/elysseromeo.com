@@ -128,9 +128,9 @@ const app = (function () {
 		      x: clientX,
 		      y: clientY
 		    });
-		    window.requestAnimationFrame(render);
+		    requestAnimationFrame(render);
 		  };
-		  window.requestAnimationFrame(render);
+		  requestAnimationFrame(render);
 		};
 		initCursor();
 
@@ -668,7 +668,9 @@ const app = (function () {
 
     loaderModule();
     formModule();
-		cursorModule();
+		if (window.innerWidth > 768) {
+			cursorModule();
+		}
   }
 
   return {
