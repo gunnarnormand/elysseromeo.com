@@ -11,10 +11,15 @@ body {
 }
 
 .cursor {
+	display: none;
 	position: fixed;
 	left: 0;
 	top: 0;
 	pointer-events: none;
+
+	@include bp-tablet {
+		display: block;
+	}
 }
 
 .cursor--small {

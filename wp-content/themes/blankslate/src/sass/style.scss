@@ -81,11 +81,14 @@ header {
 	}
 
 	a {
+		height: 100%;
+		display: flex;
+		align-items: center;
 		font-family: 'miller-banner', serif;
 		font-weight: 300;
 		font-style: normal;
 		font-size: 125%;
-		margin: 0 1em;
+		padding: 0 1em;
 		z-index: 2;
 	}
 }

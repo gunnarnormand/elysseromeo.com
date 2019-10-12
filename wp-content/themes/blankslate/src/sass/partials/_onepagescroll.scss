@@ -51,15 +51,19 @@ html {
 }
 
 .onepage-pagination li {
+	height: 100%;
 	position: relative;
 	text-align: center;
 	flex-grow: 1;
 	align-self: center;
-	padding: 5px 0;
+	padding: 0;
 }
 
 .onepage-pagination li a {
-	// cursor: pointer;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: $dark-gray;
 	font-family: miller-banner, serif;
 	font-weight: 300;

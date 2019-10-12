@@ -366,6 +366,7 @@ html {
   background-color: transparent; }
 
 .onepage-pagination li {
+  height: 100%;
   position: relative;
   text-align: center;
   -webkit-box-flex: 1;
@@ -373,9 +374,19 @@ html {
   flex-grow: 1;
   -ms-flex-item-align: center;
   align-self: center;
-  padding: 5px 0; }
+  padding: 0; }
 
 .onepage-pagination li a {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   color: #3c4a53;
   font-family: miller-banner, serif;
   font-weight: 300;
@@ -665,10 +676,14 @@ body {
     cursor: none; }
 
 .cursor {
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
   pointer-events: none; }
+  @media only screen and (min-width: 768px) {
+    .cursor {
+      display: block; } }
 
 .cursor--small {
   width: 20px;
@@ -758,11 +773,18 @@ header {
       header h1 {
         font-size: 2em; } }
   header a {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     font-family: 'miller-banner', serif;
     font-weight: 300;
     font-style: normal;
     font-size: 125%;
-    margin: 0 1em;
+    padding: 0 1em;
     z-index: 2; }
 
 .logo {
