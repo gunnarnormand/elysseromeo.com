@@ -26,10 +26,12 @@ const app = (function () {
   const nextArrow = document.querySelector('.arrow-next');
   const prevArrowSvg = document.querySelector('#prevArrow');
   const nextArrowSvg = document.querySelector('#nextArrow');
+	const $allArrowSvgs = document.querySelectorAll('.arrow svg');
   const $workItems = document.querySelectorAll('.work-content');
   const $workText = document.querySelectorAll('.work-text');
   const $workTitles = document.querySelectorAll('.work-title');
   const $workBtns = document.querySelectorAll('.work-btn');
+	const $workLinks = document.querySelectorAll('.work-link a');
   const $links = document.querySelectorAll('a');
   const $aboutPageLinks = document.querySelectorAll('a.link');
 	const innerCursor = document.querySelector(".cursor--small");
@@ -153,7 +155,7 @@ const app = (function () {
 			const segments = 8;
 			const radius = 15;
 			const noiseScale = 150;
-			const noiseRange = 4;
+			const noiseRange = 6;
 			let isNoisy = false;
 			const polygon = new paper.Path.RegularPolygon(
 				new paper.Point(0,0),
@@ -185,8 +187,8 @@ const app = (function () {
 			    group.position = new paper.Point(lastX, lastY);
 			  } else if (isStuck) {
 			    // fixed position on a nav item
-			    lastX = lerp(lastX, stuckX, 0.2);
-			    lastY = lerp(lastY, stuckY, 0.2);
+			    lastX = lerp(lastX, stuckX, 0.08);
+			    lastY = lerp(lastY, stuckY, 0.08);
 			    group.position = new paper.Point(lastX, lastY);
 			  }
 
@@ -233,7 +235,7 @@ const app = (function () {
 			      const newX = bigCoordinates[i][0] + distortionX;
 			      const newY = bigCoordinates[i][1] + distortionY;
 
-			      // set new (noisy) coodrindate of point
+			      // set new (noisy) coordindate of point
 			      segment.point.set(newX, newY);
 			    });
 
@@ -247,23 +249,52 @@ const app = (function () {
 		initCanvas();
 
 		const initCursorHovers = () => {
-			const handleBasicCursorMouseEnter = e => {
+			const handleCanvasCursorMouseEnter = e => {
 				const navItem = e.currentTarget;
 				const navItemBox = navItem.getBoundingClientRect();
 				stuckX = Math.round(navItemBox.left + navItemBox.width / 2);
 				stuckY = Math.round(navItemBox.top + navItemBox.height / 2);
 				isStuck = true;
+				TweenMax.to(innerCursor, 1, {background:'rgba(60, 74, 83, 0.5)', scale:0.25, ease: Expo.easeOut});
+			};
+			const handleCanvasCursorMouseLeave = () => {
+				isStuck = false;
+				TweenMax.to(innerCursor, 1, {background:'#b7dde1', scale:1, ease: Expo.easeOut});
+			};
+			const handleBasicCursorMouseEnter = e => {
+				TweenMax.to(innerCursor, 1, {background:'rgba(60, 74, 83, 0.5)', scale:2, ease: Expo.easeOut});
 			};
 			const handleBasicCursorMouseLeave = () => {
-				isStuck = false;
+				TweenMax.to(innerCursor, 1, {background:'#b7dde1', scale:1, ease: Expo.easeOut});
 			};
-			$aboutLink.addEventListener("mouseenter", handleBasicCursorMouseEnter);
-			$aboutLink.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+			$aboutLink.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+			$aboutLink.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			$workLinks.forEach(link => {
+				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			});
+			$aboutPageLinks.forEach(link => {
+				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			});
+			$aboutClose.addEventListener("mouseenter", handleBasicCursorMouseEnter);
+			$aboutClose.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+			$allArrowSvgs.forEach(link => {
+				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			});
+			$workBtns.forEach(link => {
+				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			});
 			const $paginationLinks = document.querySelectorAll('.onepage-pagination li a');
 			$paginationLinks.forEach(link => {
 				link.addEventListener("mouseenter", handleBasicCursorMouseEnter);
 				link.addEventListener("mouseleave", handleBasicCursorMouseLeave);
 			});
+			$logo.addEventListener("mouseenter", handleBasicCursorMouseEnter);
+			$logo.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+
 		}
 		initCursorHovers();
 
@@ -576,17 +607,6 @@ const app = (function () {
         .to($aboutInner, 1, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeInOut}, 'leavef+=.25')
         ;
     });
-
-    if (window.innerWidth > 768) {
-      $aboutPageLinks.forEach(link => {
-        link.addEventListener('mouseenter', (e) => {
-            let link = e.target;
-            let linkSplitText = new SplitText(link, {type:'words,chars'});
-            let chars = linkSplitText.chars;
-            TweenMax.staggerFrom(chars, 0.2, {scale:0, x:'-5', ease: Back.easeOut.config(1.7)}, 0.03);
-        });
-      });
-    }
 
     $aboutLink.addEventListener('click', (e) => {
       toggleState('.about__page', 'menu-status', 'closed', 'open');
