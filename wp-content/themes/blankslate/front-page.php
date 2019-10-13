@@ -16,7 +16,7 @@
                     $file = get_sub_field('file');
                     $image = get_sub_field('image');
                   ?>
-                  <div class="work-content" data-hovering="no" style="background-image: url( <?php echo $image ? $image : '' ?> );">
+                  <div class="work-content" style="background-image: url( <?php echo $image ? $image : '' ?> );">
                     <div class="work-index"></div>
                     <div class="work-text" data-display="closed">
                       <div class="work-title">

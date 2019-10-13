@@ -288,6 +288,10 @@ const app = (function () {
 				link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
 				link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
 			});
+			$workItems.forEach(link => {
+				link.addEventListener("mouseenter", handleBasicCursorMouseEnter);
+				link.addEventListener("mouseleave", handleBasicCursorMouseLeave);
+			});
 			const $paginationLinks = document.querySelectorAll('.onepage-pagination li a');
 			$paginationLinks.forEach(link => {
 				link.addEventListener("mouseenter", handleBasicCursorMouseEnter);
@@ -345,8 +349,8 @@ const app = (function () {
             .set(c_article, {xPercent: -100})
             .set(c_svg, {xPercent:-200})
             .set(c_work_img, {scale:.75, autoAlpha:0, xPercent:-100})
-            .set(c_work, {autoAlpha:0, yPercent:50})
-            .set(c_work_text, {autoAlpha:0, xPercent:-25})
+            // .set(c_work, {autoAlpha:0, yPercent:50})
+            // .set(c_work_text, {autoAlpha:0, xPercent:-25})
             ;
 
       },
@@ -387,8 +391,8 @@ const app = (function () {
             .to(c_article, 1, {xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=.5')
             .to(c_svg, 1, {xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1')
             .to(c_work_img, 1.5, {scale:1, autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1')
-            .to(c_work, .5, {autoAlpha:1, yPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.25')
-            .to(c_work_text, 1, {scale:1, autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.5')
+            // .to(c_work, .5, {autoAlpha:1, yPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.25')
+            // .to(c_work_text, 1, {scale:1, autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.5')
             .staggerFrom(chars, 1, {autoAlpha:0, yPercent:-100, ease: Expo.easeOut}, 0.25, 'before+=1.75')
             .to(currentProgressBar, 0.75, {width:'100%', ease: Expo.easeOut}, 'before+=.25');
       },
@@ -405,83 +409,60 @@ const app = (function () {
     const $totalProgress = document.querySelector('.total-progress');
 
     function openWorkText(e) {
-      e.preventDefault();
-      let workText = this.parentElement;
-      let workTitle = this;
-      let openIcon = workTitle.lastElementChild;
-      let workMain = workText.lastElementChild;
-      let display = workText.getAttribute('data-display');
-      if (display === 'closed') {
-        workText.setAttribute('data-display', 'open');
-        let expandWorkTextTl = new TimelineMax();
-          expandWorkTextTl
-            .to(workText, 1, {height:'100%', ease: Expo.easeOut}, 'open')
-            .to(openIcon, 1, {rotation:45, ease: Expo.easeOut}, 'open')
-            .fromTo(workMain, 0.5, {yPercent:100, autoAlpha:0, force3D:true},{display:'block', yPercent:0, autoAlpha:1, force3D:true, ease: Expo.easeOut}, 'open+=0.5');
-      }
-    }
-
-    function closeWorkText(e) {
-      e.preventDefault();
       e.stopPropagation();
-      let workBtn = this;
-      let workTitle = this.parentElement;
-      let workText = workTitle.parentElement;
-      let workMain = workText.lastElementChild;
-      let display = workText.getAttribute('data-display');
-      if (display === 'closed') {
-        workText.setAttribute('data-display', 'open');
-        let expandWorkTextTl = new TimelineMax();
-          expandWorkTextTl
-            .to(workText, 1, {height:'100%', ease: Expo.easeOut}, 'open')
-            .to(workBtn, 1, {rotation:45, ease: Expo.easeOut}, 'open')
-            .fromTo(workMain, 0.5, {yPercent:100, autoAlpha:0, force3D:true},{display:'block', yPercent:0, autoAlpha:1, force3D:true, ease: Expo.easeOut}, 'open+=0.5')
-            ;
-      } else if (display === 'open') {
-        workText.setAttribute('data-display', 'closed');
-        let hideWorkTextTl = new TimelineMax();
-          hideWorkTextTl
-            .to(workBtn, 1, {rotation:0, ease: Expo.easeIn}, 'close')
-            .to(workMain, 0.5, {display:'none', autoAlpha:0, yPercent:100, force3D:true, ease: Expo.easeIn}, 'close')
-            .to(workText, 1, {height:'auto', ease: Expo.easeIn}, 'close+=0.5')
-            ;
-      }
-    }
-
-    $workTitles.forEach(title => title.addEventListener('click', openWorkText));
-    $workBtns.forEach(button => button.addEventListener('click', closeWorkText));
-
-    const hoverWorkItem = (e) => {
-      let workItem = e.target;
-      let text = e.target.lastElementChild;
-      let title = text.firstElementChild;
-      let openIcon = title.lastElementChild;
+      e.preventDefault();
+      let workItem = this;
+      let workText = this.lastElementChild;
+			let workTitle = workText.firstElementChild;
+      let openIcon = workTitle.lastElementChild;
       let openIconSvg = openIcon.firstElementChild;
       let openIconPath = openIconSvg.firstElementChild;
-      let hoverStatus = workItem.getAttribute('data-hovering');
-      if (hoverStatus === 'no') {
-        workItem.setAttribute('data-hovering', 'yes');
-        let enterWorkItemTl = new TimelineMax();
-          enterWorkItemTl
-            .to(text, 1, {backgroundColor:'rgba(255, 255, 255, 0.85)', ease: Expo.easeOut}, 'start')
-            .to(title, 1, {padding:'50px 0', ease: Expo.easeInOut}, 'start')
-            .fromTo(openIcon, 0.5, {yPercent:100, force3D:true},{autoAlpha:1, yPercent:0, force3D:true, ease: Expo.easeOut}, 'start')
-            .fromTo(openIconPath, 1, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeIn}, 'start')
-            .fromTo(openIconPath, 1, {fill: 'none'},{fill:'#081121', ease: Expo.easeInOut}, 'start+=0.5');
-      } else if (hoverStatus === 'yes') {
-        workItem.setAttribute('data-hovering', 'no');
-        let leaveWorkItemTl = new TimelineMax();
-          leaveWorkItemTl
-            .to(text, 1, {backgroundColor:'#fff', ease: Expo.easeOut}, 'start')
-            .to(title, 1, {padding:'10px 0', ease: Expo.easeOut}, 'start')
-            .to(openIconPath, 1, {drawSVG:'0%', fill:'none', ease: Expo.easeOut}, 'start');
-      }
+      let workMain = workText.lastElementChild;
+      let expandWorkTextTl = new TimelineMax();
+			let status = workText.getAttribute('data-display');
+			if (status === 'closed') {
+				workText.setAttribute('data-display', 'open');
+				expandWorkTextTl
+					.to(workText, 1, {autoAlpha:1, height:'100%', backgroundColor:'rgba(255, 255, 255, 0.85)', ease: Expo.easeOut}, 'start')
+					.fromTo(workTitle, 1, {yPercent:100, autoAlpha:0, force3D:true},{yPercent:0, autoAlpha:1, force3D:true, ease: Expo.easeOut}, 'start')
+					.fromTo(workMain, 1, {yPercent:100, autoAlpha:0, force3D:true},{yPercent:0, autoAlpha:1, force3D:true, ease: Expo.easeOut}, 'start+=0.25')
+					.fromTo(openIcon, 1, {yPercent:100, force3D:true},{autoAlpha:1, yPercent:0, rotation:45, force3D:true, ease: Expo.easeOut}, 'start+=0.5')
+					.fromTo(openIconPath, 1, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeIn}, 'start+=0.5')
+					.fromTo(openIconPath, 1, {fill: 'none'},{fill:'#081121', ease: Expo.easeInOut}, 'start+=1')
+					;
+			}
+
     }
 
-    if (window.innerWidth > 768) {
-      $workItems.forEach(item => item.addEventListener('mouseenter', hoverWorkItem));
-      $workItems.forEach(item => item.addEventListener('mouseleave', hoverWorkItem));
-    }
+		function closeWorkText(e) {
+			e.stopPropagation();
+			let workText = this.parentElement.parentElement;
+			let workTitle = workText.firstElementChild;
+      let openIcon = workTitle.lastElementChild;
+      let openIconSvg = openIcon.firstElementChild;
+      let openIconPath = openIconSvg.firstElementChild;
+      let workMain = workText.lastElementChild;
+			let closeWorkTextTl = new TimelineMax();
+			let status = workText.getAttribute('data-display');
+			if (status === 'open') {
+				workText.setAttribute('data-display', 'closed');
+				closeWorkTextTl
+					.to(workText, 1, {autoAlpha:0, height:'auto', ease: Expo.easeOut}, 'start')
+					.to(workTitle, 1, {yPercent:100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start')
+					.to(workMain, 1, {yPercent:100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=0.25')
+					.to(openIcon, 1, {autoAlpha:0, yPercent:100, rotation:0, force3D:true, ease: Expo.easeOut}, 'start+=0.5')
+					.to(openIconPath, 1, {drawSVG:'0%', ease: Expo.easeIn}, 'start+=0.5')
+					.to(openIconPath, 1, {fill:'none', ease: Expo.easeInOut}, 'start+=1')
+					;
+			}
+
+		}
+
+    $workItems.forEach(item => item.addEventListener('click', openWorkText));
+		$workBtns.forEach(button => button.addEventListener('click', closeWorkText));
+		$workLinks.forEach(link => link.addEventListener('click', (e) => {
+			e.stopPropagation();
+		}));
 
     prevArrow.addEventListener('click', (e) => {
       e.preventDefault();
