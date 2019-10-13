@@ -331,10 +331,6 @@ const app = (function () {
         // console.log(c_work_img);
         let c_svg = c_article.lastElementChild;
         // console.log(c_svg);
-        let c_work = c_work_img.lastElementChild;
-        // console.log(c_work);
-        let c_work_text = c_work.firstElementChild;
-        // console.log(c_work_text);
         let c_index = c_work_img.firstElementChild;
         // console.log(c_index);
         let allProgressBars = $footerNav.querySelectorAll('.pagination-progress');
@@ -349,8 +345,6 @@ const app = (function () {
             .set(c_article, {xPercent: -100})
             .set(c_svg, {xPercent:-200})
             .set(c_work_img, {scale:.75, autoAlpha:0, xPercent:-100})
-            // .set(c_work, {autoAlpha:0, yPercent:50})
-            // .set(c_work_text, {autoAlpha:0, xPercent:-25})
             ;
 
       },
@@ -373,10 +367,6 @@ const app = (function () {
         // console.log(c_work_img);
         let c_svg = c_article.lastElementChild;
         // console.log(c_svg);
-        let c_work = c_work_img.lastElementChild;
-        // console.log(c_work);
-        let c_work_text = c_work.firstElementChild;
-        // console.log(c_work_text);
         let c_index = c_work_img.firstElementChild;
         // console.log(c_index);
         let currentLink = $footerNav.querySelector(`a[data-index="${index}"]`);
@@ -391,8 +381,6 @@ const app = (function () {
             .to(c_article, 1, {xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=.5')
             .to(c_svg, 1, {xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1')
             .to(c_work_img, 1.5, {scale:1, autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1')
-            // .to(c_work, .5, {autoAlpha:1, yPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.25')
-            // .to(c_work_text, 1, {scale:1, autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'before+=1.5')
             .staggerFrom(chars, 1, {autoAlpha:0, yPercent:-100, ease: Expo.easeOut}, 0.25, 'before+=1.75')
             .to(currentProgressBar, 0.75, {width:'100%', ease: Expo.easeOut}, 'before+=.25');
       },
