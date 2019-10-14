@@ -81,8 +81,7 @@ const app = (function () {
 	          .from(nextArrow, 3, {xPercent: 100, autoAlpha:0, force3D:true, ease: Expo.easeIn}, 'start+=5.5')
 	          .from($firstContent, 3, {xPercent: -100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=6')
 	          .staggerFrom($footerLinks, 1, {yPercent:200, autoAlpha:0, force3D:true, ease: Back.easeOut.config(1.5)}, .1, 'start+=6.5')
-	          .to($firstFooterNavItem, 0.75, {width:'100%', ease: Expo.easeOut}, 'start+=6.75')
-	          ;
+	          .to($firstFooterNavItem, 0.75, {width:'100%', ease: Expo.easeOut}, 'start+=6.75');
         }
       });
     }
@@ -180,7 +179,6 @@ const app = (function () {
 			};
 			paper.view.onFrame = event => {
 
-
 				if (!isStuck) {
 			    // move circle around normally
 			    lastX = lerp(lastX, clientX, 0.2);
@@ -243,8 +241,6 @@ const app = (function () {
 			  }
 			  polygon.smooth();
 
-
-
 			}
 		}
 		initCanvas();
@@ -305,11 +301,6 @@ const app = (function () {
 		}
 		initCursorHovers();
 
-
-
-
-
-
 	}
 
   const init = () => {
@@ -344,19 +335,16 @@ const app = (function () {
             .set(c_bg_2, {xPercent: -100})
             .set(c_article, {xPercent: -100})
             .set(c_svg, {xPercent:-200})
-            .set(c_work_img, {scale:.75, autoAlpha:0, xPercent:-100})
-            ;
+            .set(c_work_img, {scale:.75, autoAlpha:0, xPercent:-100});
 
       },
       afterMove: function(index, currentSection) {
         let prevArrowInTl = new TimelineMax();
           prevArrowInTl
             .to(prevArrowSvg, 2, {drawSVG:'100%', ease: Expo.easeOut});
-
         let nextArrowInTl = new TimelineMax();
           nextArrowInTl
             .to(nextArrowSvg, 2, {drawSVG:'100%', ease: Expo.easeOut});
-
         let c_bg_1 = currentSection.firstElementChild;
         // console.log(c_bg_1);
         let c_bg_2 = c_bg_1.firstElementChild;
@@ -416,8 +404,7 @@ const app = (function () {
 					.fromTo(workMain, 1, {yPercent:100, autoAlpha:0, force3D:true},{yPercent:0, autoAlpha:1, force3D:true, ease: Expo.easeOut}, 'start+=0.25')
 					.fromTo(openIcon, 1, {yPercent:100, force3D:true},{autoAlpha:1, yPercent:0, rotation:45, force3D:true, ease: Expo.easeOut}, 'start+=0.5')
 					.fromTo(openIconPath, 1, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeIn}, 'start+=0.5')
-					.fromTo(openIconPath, 1, {fill: 'none'},{fill:'#081121', ease: Expo.easeInOut}, 'start+=1')
-					;
+					.fromTo(openIconPath, 1, {fill: 'none'},{fill:'#081121', ease: Expo.easeInOut}, 'start+=1');
 			}
 
     }
@@ -440,8 +427,7 @@ const app = (function () {
 					.to(workMain, 1, {yPercent:100, autoAlpha:0, force3D:true, ease: Expo.easeOut}, 'start+=0.25')
 					.to(openIcon, 1, {autoAlpha:0, yPercent:100, rotation:0, force3D:true, ease: Expo.easeOut}, 'start+=0.5')
 					.to(openIconPath, 1, {drawSVG:'0%', ease: Expo.easeIn}, 'start+=0.5')
-					.to(openIconPath, 1, {fill:'none', ease: Expo.easeInOut}, 'start+=1')
-					;
+					.to(openIconPath, 1, {fill:'none', ease: Expo.easeInOut}, 'start+=1');
 			}
 
 		}
@@ -564,8 +550,7 @@ const app = (function () {
         .to($aboutInner, 2, {autoAlpha:0, xPercent:100, force3D:true, ease: Expo.easeOut}, 'enterf')
         .fromTo($contactPage, 2, {autoAlpha:0, xPercent:-100, force3D:true}, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'enterf+=.25')
         .fromTo($hideFormArrow, 2, {autoAlpha:0, xPercent:65, force3D:true}, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'enterf+=.45')
-        .fromTo($hideFormArrowPath, 2, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeOut}, 'enterf+=.5')
-        ;
+        .fromTo($hideFormArrowPath, 2, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeOut}, 'enterf+=.5');
     });
 
     $hideFormArrow.addEventListener('click', (e) => {
@@ -576,8 +561,7 @@ const app = (function () {
         .to($hideFormArrowPath, .25, {fill:'none', ease: Expo.easeOut}, 'leavef')
         .to($hideFormArrowPath, .25, {drawSVG:'0%', ease: Expo.easeOut}, 'leavef')
         .to($contactPage, 1, {autoAlpha:0, xPercent:-100, force3D:true, ease: Expo.easeInOut}, 'leavef+=.25')
-        .to($aboutInner, 1, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeInOut}, 'leavef+=.25')
-        ;
+        .to($aboutInner, 1, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeInOut}, 'leavef+=.25');
     });
 
     $aboutLink.addEventListener('click', (e) => {
@@ -591,8 +575,7 @@ const app = (function () {
           .fromTo($aboutPage, 2, {autoAlpha:0, xPercent:-100, force3D:true}, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'enter')
           .fromTo($aboutBg, 2, {autoAlpha:0, xPercent:-50, force3D:true}, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'enter+=.15')
           .fromTo($aboutInner, 2, {autoAlpha:0, xPercent:-50, force3D:true}, {autoAlpha:1, xPercent:0, force3D:true, ease: Expo.easeOut}, 'enter+=.25')
-          .fromTo($exitAbout, 2, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeOut}, 'enter+=1.25')
-          ;
+          .fromTo($exitAbout, 2, {drawSVG:'0%'},{drawSVG:'100%', ease: Expo.easeOut}, 'enter+=1.25');
       } else if ($aboutPage.getAttribute('menu-status') === 'closed') {
         let backTl1 = new TimelineMax();
         backTl1
@@ -600,8 +583,7 @@ const app = (function () {
           .to($exitAbout, .25, {drawSVG:'0%', ease: Expo.easeOut}, 'leave')
           .to($aboutBg, 1, {autoAlpha:0, xPercent:-100, force3D:true, ease: Expo.easeInOut}, 'leave+=.25')
           .to($aboutPage, 1, {autoAlpha:0, xPercent:-100, force3D:true, ease: Expo.easeInOut}, 'leave+=.25')
-          .to($footerNav, 1, {backgroundColor:'transparent', ease: Expo.easeOut}, 'leave+=.5')
-        ;
+          .to($footerNav, 1, {backgroundColor:'transparent', ease: Expo.easeOut}, 'leave+=.5');
       }
     });
 
@@ -614,8 +596,7 @@ const app = (function () {
         .to($exitAbout, .25, {drawSVG:'0%', fill:'none', ease: Expo.easeOut}, 'leave')
         .to($aboutBg, 1, {autoAlpha:0, xPercent:100, force3D:true, ease: Expo.easeInOut}, 'leave+=.25')
         .to($aboutPage, 1, {autoAlpha:0, xPercent:100, force3D:true, ease: Expo.easeInOut}, 'leave+=.25')
-        .to($footerNav, 1, {backgroundColor:'transparent', ease: Expo.easeOut}, 'leave+=.5')
-        ;
+        .to($footerNav, 1, {backgroundColor:'transparent', ease: Expo.easeOut}, 'leave+=.5');
     });
 
     $aboutClose.addEventListener('mouseenter', () => {
@@ -644,8 +625,7 @@ const app = (function () {
       this.append($highlight);
       let highlighLinkTl = new TimelineMax();
         highlighLinkTl
-          .to($highlight, 1, {width:'100%', ease: Expo.easeOut})
-          ;
+          .to($highlight, 1, {width:'100%', ease: Expo.easeOut});
     }
 
     function unhighlightLink(e) {
