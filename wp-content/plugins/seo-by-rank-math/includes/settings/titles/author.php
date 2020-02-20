@@ -60,6 +60,18 @@ $cmb->add_field([
 ]);
 
 $cmb->add_field([
+	'id'              => 'author_advanced_robots',
+	'type'            => 'advanced_robots',
+	'name'            => esc_html__( 'Author Advanced Robots', 'rank-math' ),
+	'sanitization_cb' => [ '\RankMath\CMB2', 'sanitize_advanced_robots' ],
+	'dep'             => [
+		'relation' => 'and',
+		[ 'author_custom_robots', 'on' ],
+		[ 'disable_author_archives', 'off' ],
+	],
+]);
+
+$cmb->add_field([
 	'id'              => 'author_archive_title',
 	'type'            => 'text',
 	'name'            => esc_html__( 'Author Archive Title', 'rank-math' ),
@@ -68,6 +80,7 @@ $cmb->add_field([
 	'default'         => '%name% %sep% %sitename% %page%',
 	'dep'             => $dep,
 	'sanitization_cb' => false,
+	'attributes'      => [ 'data-exclude-variables' => 'seo_title,seo_description' ],
 ]);
 
 $cmb->add_field([
@@ -78,8 +91,9 @@ $cmb->add_field([
 	'classes'         => 'rank-math-supports-variables rank-math-description',
 	'dep'             => $dep,
 	'attributes'      => [
-		'class'             => 'cmb2-textarea-small wp-exclude-emoji',
-		'data-gramm_editor' => 'false',
+		'class'                  => 'cmb2-textarea-small wp-exclude-emoji',
+		'data-gramm_editor'      => 'false',
+		'data-exclude-variables' => 'seo_title,seo_description',
 	],
 	'sanitization_cb' => false,
 ]);

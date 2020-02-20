@@ -13,16 +13,8 @@ $cmb->add_field([
 	'id'      => 'usage_tracking',
 	'type'    => 'switch',
 	'name'    => esc_html__( 'Usage Tracking', 'rank-math' ),
-	'desc'    => esc_html__( 'Help make Rank Math even more powerful by allowing us to collect non-sensitive diagnostic data and usage information.', 'rank-math' ) . ' <a href="' . KB::get( 'rm-privacy' ) . '" target="_blank">' . esc_html__( 'Find out more.', 'rank-math' ) . '</a> <br />' . '<a href="' . esc_url( Helper::get_admin_url( 'status', 'tab=status' ) ) . '">' . esc_html__( 'Show me the data', 'rank-math' ) . '</a>',
+	'desc'    => esc_html__( 'Help make Rank Math even more powerful by allowing us to collect non-sensitive diagnostic data and usage information.', 'rank-math' ) . ' <a href="' . KB::get( 'rm-privacy' ) . '" target="_blank">' . esc_html__( 'Find out more.', 'rank-math' ) . '</a>',
 	'default' => 'on',
-]);
-
-$cmb->add_field([
-	'id'      => 'enable_auto_update',
-	'type'    => 'switch',
-	'name'    => esc_html__( 'Auto Update', 'rank-math' ),
-	'desc'    => esc_html__( 'Enable auto update of the plugin', 'rank-math' ),
-	'default' => 'off',
 ]);
 
 $cmb->add_field([
@@ -48,7 +40,7 @@ $cmb->add_field([
 
 $cmb->add_field([
 	'id'      => 'frontend_seo_score_template',
-	'type'    => 'switch',
+	'type'    => 'radio_inline',
 	'name'    => esc_html__( 'SEO Score Template', 'rank-math' ),
 	'desc'    => sprintf( esc_html__( 'Change the styling for the front end SEO score badge.', 'rank-math' ), '<code>nofollow</code>' ),
 	'options' => [
@@ -61,7 +53,7 @@ $cmb->add_field([
 
 $cmb->add_field([
 	'id'      => 'frontend_seo_score_position',
-	'type'    => 'switch',
+	'type'    => 'radio_inline',
 	'name'    => esc_html__( 'SEO Score Position', 'rank-math' ),
 	'desc'    => sprintf(
 		/* translators: %1$s is the shortcode */

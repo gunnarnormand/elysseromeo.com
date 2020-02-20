@@ -193,7 +193,7 @@ class Paper {
 		}
 
 		$this->description = wp_strip_all_tags( stripslashes( $this->description ), true );
-		$this->description = esc_html( $this->description );
+		$this->description = esc_attr( $this->description );
 
 		return $this->description;
 	}
@@ -221,6 +221,7 @@ class Paper {
 		 * @param array $robots The meta robots directives to be echoed.
 		 */
 		$this->robots = $this->do_filter( 'frontend/robots', array_unique( $this->robots ) );
+		$this->advanced_robots();
 
 		return $this->robots;
 	}
@@ -230,10 +231,11 @@ class Paper {
 	 */
 	private function validate_robots() {
 		if ( empty( $this->robots ) || ! is_array( $this->robots ) ) {
-			return [
+			$this->robots = [
 				'index'  => 'index',
 				'follow' => 'follow',
 			];
+			return;
 		}
 
 		// Add Index and Follow.
@@ -243,6 +245,40 @@ class Paper {
 		if ( ! isset( $this->robots['follow'] ) ) {
 			$this->robots = [ 'follow' => 'follow' ] + $this->robots;
 		}
+	}
+
+	/**
+	 * Add Advanced robots.
+	 */
+	private function advanced_robots() {
+
+		// Early Bail if robots is set to noindex or nosnippet!
+		if ( ( isset( $this->robots['index'] ) && 'noindex' === $this->robots['index'] ) || ( isset( $this->robots['nosnippet'] ) && 'nosnippet' === $this->robots['nosnippet'] ) ) {
+			return;
+		}
+
+		$advanced_robots = $this->paper->advanced_robots();
+		if ( ! is_array( $advanced_robots ) ) {
+			$advanced_robots = wp_parse_args(
+				Helper::get_settings( 'titles.advanced_robots_global' ),
+				[
+					'max-snippet'       => -1,
+					'max-video-preview' => -1,
+					'max-image-preview' => 'large',
+				]
+			);
+
+			$advanced_robots = self::advanced_robots_combine( $advanced_robots );
+		}
+
+		/**
+		 * Allows filtering of the advanced meta robots.
+		 *
+		 * @param array $robots The meta robots directives to be echoed.
+		 */
+		$advanced_robots = $this->do_filter( 'frontend/advanced_robots', array_unique( $advanced_robots ) );
+
+		$this->robots = ! empty( $advanced_robots ) ? $this->robots + $advanced_robots : $this->robots;
 	}
 
 	/**
@@ -328,7 +364,7 @@ class Paper {
 		extract( $this->canonical ); // phpcs:ignore
 
 		if ( is_front_page() || ( function_exists( 'ampforwp_is_front_page' ) && ampforwp_is_front_page() ) ) {
-			$canonical = home_url();
+			$canonical = user_trailingslashit( home_url() );
 		}
 
 		// If not singular than we can have pagination.
@@ -411,6 +447,16 @@ class Paper {
 	 */
 	public static function get_from_options( $id, $source = [], $default = '' ) {
 		$value = Helper::get_settings( "titles.$id" );
+
+		// Break loop.
+		if ( ! Str::ends_with( 'default_snippet_name', $value ) && ! Str::ends_with( 'default_snippet_desc', $value ) ) {
+			$value = \str_replace(
+				[ '%seo_title%', '%seo_description%' ],
+				[ '%title%', '%excerpt%' ],
+				$value
+			);
+		}
+
 		return '' !== $value ? Helper::replace_vars( $value, $source ) : $default;
 	}
 
@@ -445,5 +491,42 @@ class Paper {
 		}
 
 		return $robots;
+	}
+
+	/**
+	 * Make robots values as keyed array.
+	 *
+	 * @param array $advanced_robots  Main instance.
+	 *
+	 * @return array
+	 */
+	public static function advanced_robots_combine( $advanced_robots ) {
+		if ( empty( $advanced_robots ) ) {
+			return;
+		}
+
+		$robots = [];
+		foreach ( $advanced_robots as $key => $data ) {
+			if ( $data ) {
+				$robots[ $key ] = $key . ':' . $data;
+			}
+		}
+		return $robots;
+	}
+
+	/**
+	 * Should apply shortcode on content.
+	 *
+	 * @return bool
+	 */
+	public static function should_apply_shortcode() {
+		if (
+			Post::is_woocommerce_page() ||
+			( function_exists( 'is_wcfm_page' ) && is_wcfm_page() )
+		) {
+			return false;
+		}
+
+		return apply_filters( 'rank_math/paper/auto_generated_description/apply_shortcode', false );
 	}
 }

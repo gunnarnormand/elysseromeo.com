@@ -143,6 +143,11 @@ class Installer {
 		update_option( 'rank_math_version', rank_math()->version );
 		update_option( 'rank_math_db_version', rank_math()->db_version );
 
+		// Clear rollback option if necessary.
+		if ( rank_math()->version !== get_option( 'rank_math_rollback_version' ) ) {
+			delete_option( 'rank_math_rollback_version' );
+		}
+
 		// Save install date.
 		if ( false === boolval( get_option( 'rank_math_install_date' ) ) ) {
 			update_option( 'rank_math_install_date', current_time( 'timestamp' ) );
@@ -281,6 +286,8 @@ class Installer {
 			'sitemap',
 			'rich-snippet',
 			'woocommerce',
+			'buddypress',
+			'bbpress',
 			'acf',
 		];
 
@@ -329,6 +336,7 @@ class Installer {
 			'breadcrumbs_search_format'           => esc_html__( 'Results for %s', 'rank-math' ),
 			'breadcrumbs_404_label'               => esc_html__( '404 Error: page not found', 'rank-math' ),
 			'breadcrumbs_ancestor_categories'     => 'off',
+			'breadcrumbs_blog_page'               => 'off',
 			'404_monitor_mode'                    => 'simple',
 			'404_monitor_limit'                   => 100,
 			'404_monitor_ignore_query_parameters' => 'on',
@@ -421,8 +429,8 @@ class Installer {
 			$titles[ 'pt_' . $post_type . '_custom_robots' ]        = $defaults['is_custom'];
 			$titles[ 'pt_' . $post_type . '_default_rich_snippet' ] = $defaults['rich_snippet'];
 			$titles[ 'pt_' . $post_type . '_default_article_type' ] = $defaults['article_type'];
-			$titles[ 'pt_' . $post_type . '_default_snippet_name' ] = '%title%';
-			$titles[ 'pt_' . $post_type . '_default_snippet_desc' ] = '%excerpt%';
+			$titles[ 'pt_' . $post_type . '_default_snippet_name' ] = '%seo_title%';
+			$titles[ 'pt_' . $post_type . '_default_snippet_desc' ] = '%seo_description%';
 
 			if ( $this->has_archive( $post_type ) ) {
 				$titles[ 'pt_' . $post_type . '_archive_title' ] = '%title% %page% %sep% %sitename%';
@@ -460,9 +468,10 @@ class Installer {
 	 */
 	private function get_post_type_defaults( $post_type ) {
 		$rich_snippets = [
-			'post'    => 'article',
-			'page'    => 'article',
-			'product' => 'product',
+			'post'     => 'article',
+			'page'     => 'article',
+			'product'  => 'product',
+			'download' => 'product',
 		];
 
 		$defaults = [

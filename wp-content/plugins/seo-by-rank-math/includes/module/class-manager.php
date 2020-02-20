@@ -105,8 +105,8 @@ class Manager {
 		];
 
 		$modules['rich-snippet'] = [
-			'title'    => esc_html__( 'Rich Snippets', 'rank-math' ),
-			'desc'     => esc_html__( 'Enable support for the Rich Snippets, which adds metadata to your website, resulting in rich search results and more traffic.', 'rank-math' ),
+			'title'    => esc_html__( 'Schema (Structured Data)', 'rank-math' ),
+			'desc'     => esc_html__( 'Enable support for the structured data, which adds metadata to your website, resulting in rich search results and more traffic.', 'rank-math' ),
 			'class'    => 'RankMath\RichSnippet\RichSnippet',
 			'icon'     => 'dashicons-awards',
 			'settings' => Helper::get_admin_url( 'options-titles' ) . '#setting-panel-post-type-post',
@@ -184,6 +184,12 @@ class Manager {
 			'class' => 'RankMath\Robots_Txt',
 		];
 
+		$modules['version-control'] = [
+			'title' => esc_html__( 'Version Control', 'rank-math' ),
+			'only'  => 'internal',
+			'class' => 'RankMath\Version_Control',
+		];
+
 		$modules['status'] = [
 			'title' => esc_html__( 'Status', 'rank-math' ),
 			'only'  => 'internal',
@@ -216,7 +222,7 @@ class Manager {
 		$modules['bbpress'] = [
 			'title'         => esc_html__( 'bbPress', 'rank-math' ),
 			'desc'          => esc_html__( 'Add proper Meta tags to your bbPress forum posts, categories, profiles, etc. Get more options to take control of what search engines see and how they see it.', 'rank-math' ),
-			'icon'          => 'dashicons-cart',
+			'icon'          => 'dashicons-buddicons-bbpress-logo',
 			'disabled'      => ( ! function_exists( 'is_bbpress' ) ),
 			'disabled_text' => esc_html__( 'Please activate bbPress plugin to use this module.', 'rank-math' ),
 			'only'          => 'skip',
@@ -224,8 +230,8 @@ class Manager {
 
 		$modules['buddypress'] = [
 			'title'         => esc_html__( 'BuddyPress', 'rank-math' ),
-			'desc'          => esc_html__( 'Add proper Meta tags to your BuddyPress pages.', 'rank-math' ),
-			'icon'          => 'dashicons-cart',
+			'desc'          => esc_html__( 'Enable the BuddyPress module for Rank Math SEO to make your BuddyPress forum SEO friendly by adding proper meta tags to all forum pages.', 'rank-math' ),
+			'icon'          => 'dashicons-buddicons-buddypress-logo',
 			'class'         => 'RankMath\BuddyPress\BuddyPress',
 			'disabled'      => ! class_exists( 'BuddyPress' ),
 			'disabled_text' => esc_html__( 'Please activate BuddyPress plugin to use this module.', 'rank-math' ),
@@ -295,7 +301,7 @@ class Manager {
 
 							<h3><?php echo $module->get( 'title' ); ?></h3>
 
-							<p><em><?php echo $module->get( 'desc' ); ?></em></p>
+							<p><?php echo $module->get( 'desc' ); ?></p>
 
 							<?php $module->the_link(); ?>
 

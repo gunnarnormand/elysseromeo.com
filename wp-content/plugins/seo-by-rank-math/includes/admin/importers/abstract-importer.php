@@ -192,12 +192,13 @@ abstract class Plugin_Importer {
 		if ( is_scalar( $result ) ) {
 			$result = [];
 		}
-		$result['message'] = $message;
 
 		if ( $is_success ) {
+			$result['message'] = $message;
 			$this->success( $result );
 		}
 
+		$result['error'] = $message;
 		$this->error( $result );
 	}
 
@@ -212,9 +213,11 @@ abstract class Plugin_Importer {
 	 */
 	private function format_message( $result, $action, $message ) {
 		if ( 'postmeta' === $action || 'usermeta' === $action ) {
-			$message = sprintf( $message, $result['start'], $result['end'], $result['total_items'] );
-		} elseif ( 'termmeta' === $action || 'redirections' === $action ) {
-			$message = sprintf( $message, $result['count'] );
+			return sprintf( $message, $result['start'], $result['end'], $result['total_items'] );
+		}
+
+		if ( 'termmeta' === $action || 'redirections' === $action ) {
+			return sprintf( $message, $result['count'] );
 		}
 
 		return $message;
@@ -284,6 +287,10 @@ abstract class Plugin_Importer {
 	 * @param int            $object_id   Object ID either post id, term id or user id.
 	 */
 	protected function replace_image( $source, $destination, $image, $image_id, $object_id = null ) {
+		if ( empty( $source ) ) {
+			return;
+		}
+
 		$attachment_id = Attachment::get_by_url( $source );
 		if ( 1 > $attachment_id ) {
 			return;
@@ -306,10 +313,11 @@ abstract class Plugin_Importer {
 	 * @return string
 	 */
 	protected function convert_bool( $value ) {
-		if ( true === $value || 'true' === $value || '1' === $value || 1 === $value ) {
+		if ( true === boolval( $value ) ) {
 			return 'on';
 		}
-		if ( false === $value || 'false' === $value || '0' === $value || 0 === $value ) {
+
+		if ( false === boolval( $value ) ) {
 			return 'off';
 		}
 

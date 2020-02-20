@@ -56,6 +56,15 @@ class Singular implements IPaper {
 	}
 
 	/**
+	 * Retrieves the advanced robots.
+	 *
+	 * @return array
+	 */
+	public function advanced_robots() {
+		return $this->get_post_advanced_robots( $this->object );
+	}
+
+	/**
 	 * Retrieves the canonical URL.
 	 *
 	 * @return array
@@ -153,46 +162,9 @@ class Singular implements IPaper {
 		}
 
 		// 3. Description template set in the Titles & Meta.
-		$post_type   = isset( $object->post_type ) ? $object->post_type : $object->query_var;
-		$description = Paper::get_from_options( "pt_{$post_type}_description", $object );
+		$post_type = isset( $object->post_type ) ? $object->post_type : $object->query_var;
 
-		return '' !== $description ? $description : $this->get_post_description_auto_generated( $object );
-	}
-
-	/**
-	 * Auto-generate description for metadesc
-	 *
-	 * @param object|null $object Object to retrieve the description from.
-	 *
-	 * @return string
-	 */
-	protected function get_post_description_auto_generated( $object ) {
-		// Early Bail!
-		if ( empty( $object ) || empty( $object->post_content ) ) {
-			return '';
-		}
-
-		$keywords     = Post::get_meta( 'focus_keyword', $object->ID );
-		$post_content = $this->should_apply_shortcode() ? do_shortcode( $object->post_content ) : $object->post_content;
-		$post_content = wpautop( WordPress::strip_shortcodes( $post_content ) );
-		$post_content = wp_kses( $post_content, [ 'p' => [] ] );
-
-		// 4. Paragraph with the focus keyword.
-		if ( ! empty( $keywords ) ) {
-			$regex = '/<p>(.*' . str_replace( [ ',', ' ', '/' ], [ '|', '.', '\/' ], $keywords ) . '.*)<\/p>/iu';
-			\preg_match_all( $regex, $post_content, $matches );
-			if ( isset( $matches[1], $matches[1][0] ) ) {
-				return $matches[1][0];
-			}
-		}
-
-		// 5. The First paragraph of the content.
-		\preg_match_all( '/<p>(.*)<\/p>/iu', $post_content, $matches );
-		if ( isset( $matches[1], $matches[1][0] ) ) {
-			return $matches[1][0];
-		}
-
-		return '';
+		return wp_html_excerpt( Paper::get_from_options( "pt_{$post_type}_description", $object ), 160 );
 	}
 
 	/**
@@ -226,17 +198,23 @@ class Singular implements IPaper {
 	}
 
 	/**
-	 * Should apply shortcode on content.
+	 * Retrieves the advanced robots set in the post metabox.
 	 *
-	 * @return bool
+	 * @param object|null $object Object to retrieve the robots data from.
+	 *
+	 * @return string The robots for the specified object, or queried object if not supplied.
 	 */
-	private function should_apply_shortcode() {
-		$is_woocommerce_page = Post::is_woocommerce_page();
-		$is_wcfm_page        = function_exists( 'is_wcfm_page' ) && is_wcfm_page();
-		if ( $is_woocommerce_page || $is_wcfm_page ) {
-			return false;
+	protected function get_post_advanced_robots( $object = null ) {
+		if ( ! is_object( $this->object ) ) {
+			return [];
 		}
 
-		return apply_filters( 'rank_math/paper/auto_generated_description/apply_shortcode', false );
+		$post_type = $this->object->post_type;
+		$robots    = Paper::advanced_robots_combine( Post::get_meta( 'advanced_robots', $this->object->ID ) );
+		if ( ! is_array( $robots ) && Helper::get_settings( "titles.pt_{$post_type}_custom_robots" ) ) {
+			$robots = Paper::advanced_robots_combine( Helper::get_settings( "titles.pt_{$post_type}_advanced_robots" ), true );
+		}
+
+		return $robots;
 	}
 }

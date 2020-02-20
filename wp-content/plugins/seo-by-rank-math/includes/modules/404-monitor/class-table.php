@@ -28,8 +28,8 @@ class Table extends List_Table {
 
 		parent::__construct(
 			[
-				'singular' => esc_html__( 'event', 'rank-math' ),
-				'plural'   => esc_html__( 'events', 'rank-math' ),
+				'singular' => 'event',
+				'plural'   => 'events',
 				'no_items' => esc_html__( 'The 404 error log is empty.', 'rank-math' ),
 			]
 		);
@@ -79,7 +79,7 @@ class Table extends List_Table {
 		}
 		?>
 		<div class="alignleft actions">
-			<input type="button" class="button action rank-math-clear-logs" value="<?php esc_attr_e( 'Clear Log', 'rank-math' ); ?>">
+			<input type="button" class="button button-link-delete action rank-math-clear-logs" value="<?php esc_attr_e( 'Clear Log', 'rank-math' ); ?>">
 		</div>
 		<?php
 	}

@@ -31,6 +31,7 @@ $cmb->add_field([
 	'default'         => '%date% %page% %sep% %sitename%',
 	'dep'             => $dep,
 	'sanitization_cb' => false,
+	'attributes'      => [ 'data-exclude-variables' => 'seo_title,seo_description' ],
 ]);
 
 $cmb->add_field([
@@ -42,8 +43,9 @@ $cmb->add_field([
 	'dep'             => $dep,
 	'sanitization_cb' => false,
 	'attributes'      => [
-		'class'             => 'cmb2-textarea-small wp-exclude-emoji',
-		'data-gramm_editor' => 'false',
+		'class'                  => 'cmb2-textarea-small wp-exclude-emoji',
+		'data-gramm_editor'      => 'false',
+		'data-exclude-variables' => 'seo_title,seo_description',
 	],
 ]);
 
@@ -55,6 +57,7 @@ $cmb->add_field([
 	'classes'         => 'rank-math-supports-variables rank-math-title',
 	'default'         => '%search_query% %page% %sep% %sitename%',
 	'sanitization_cb' => false,
+	'attributes'      => [ 'data-exclude-variables' => 'seo_title,seo_description' ],
 ]);
 
 $cmb->add_field([
@@ -65,6 +68,7 @@ $cmb->add_field([
 	'classes'         => 'rank-math-supports-variables rank-math-title',
 	'default'         => 'Page Not Found %sep% %sitename%',
 	'sanitization_cb' => false,
+	'attributes'      => [ 'data-exclude-variables' => 'seo_title,seo_description' ],
 ]);
 
 $cmb->add_field([
@@ -75,6 +79,15 @@ $cmb->add_field([
 	'desc'              => esc_html__( 'Custom values for robots meta tag on date page.', 'rank-math' ),
 	'options'           => Helper::choices_robots(),
 	'select_all_button' => false,
+	'dep'               => $dep,
+]);
+
+$cmb->add_field([
+	'id'              => 'date_advanced_robots',
+	'type'            => 'advanced_robots',
+	'name'            => esc_html__( 'Date Advanced Robots', 'rank-math' ),
+	'sanitization_cb' => [ '\RankMath\CMB2', 'sanitize_advanced_robots' ],
+	'dep'             => $dep,
 ]);
 
 $cmb->add_field([

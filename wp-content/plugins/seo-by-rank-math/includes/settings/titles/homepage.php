@@ -20,6 +20,7 @@ $cmb->add_field([
 	'classes'         => 'rank-math-supports-variables rank-math-title',
 	'default'         => '%sitename% %page% %sep% %sitedesc%',
 	'sanitization_cb' => false,
+	'attributes'      => [ 'data-exclude-variables' => 'seo_title,seo_description' ],
 ]);
 
 $cmb->add_field([
@@ -30,8 +31,9 @@ $cmb->add_field([
 	'classes'         => 'rank-math-supports-variables rank-math-description',
 	'sanitization_cb' => true,
 	'attributes'      => [
-		'class'             => 'cmb2_textarea wp-exclude-emoji',
-		'data-gramm_editor' => 'false',
+		'class'                  => 'cmb2_textarea wp-exclude-emoji',
+		'data-gramm_editor'      => 'false',
+		'data-exclude-variables' => 'seo_title,seo_description',
 	],
 ]);
 
@@ -55,6 +57,14 @@ $cmb->add_field([
 	'options'           => Helper::choices_robots(),
 	'select_all_button' => false,
 	'dep'               => [ [ 'homepage_custom_robots', 'on' ] ],
+]);
+
+$cmb->add_field([
+	'id'              => 'homepage_advanced_robots',
+	'type'            => 'advanced_robots',
+	'name'            => esc_html__( 'Homepage Advanced Robots', 'rank-math' ),
+	'sanitization_cb' => [ '\RankMath\CMB2', 'sanitize_advanced_robots' ],
+	'dep'             => [ [ 'homepage_custom_robots', 'on' ] ],
 ]);
 
 $cmb->add_field([

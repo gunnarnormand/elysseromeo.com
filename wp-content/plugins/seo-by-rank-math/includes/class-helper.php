@@ -18,6 +18,7 @@ use RankMath\Helpers\Post_Type;
 use RankMath\Helpers\Options;
 use RankMath\Helpers\Taxonomy;
 use RankMath\Helpers\WordPress;
+use RankMath\Replace_Variables\Replacer;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -31,21 +32,24 @@ class Helper {
 	/**
 	 * Replace `%variables%` with context-dependent value.
 	 *
-	 * @param  string $content The string containing the %variables%.
-	 * @param  array  $args    Context object, can be post, taxonomy or term.
-	 * @param  array  $exclude Excluded variables won't be replaced.
+	 * @param string $content The string containing the %variables%.
+	 * @param array  $args    Context object, can be post, taxonomy or term.
+	 * @param array  $exclude Excluded variables won't be replaced.
+	 *
 	 * @return string
 	 */
 	public static function replace_vars( $content, $args = [], $exclude = [] ) {
-		$replacer = new Replace_Vars();
-
-		return $replacer->replace( $content, $args, $exclude );
+		$replace = new Replacer;
+		return $replace->replace( $content, $args, $exclude );
 	}
 
 	/**
 	 * Register extra %variables%. For developers.
 	 *
 	 * @codeCoverageIgnore
+	 *
+	 * @deprecated 1.0.34 Use rank_math_register_var_replacement()
+	 * @see rank_math_register_var_replacement()
 	 *
 	 * @param  string $var       Variable name, for example %custom%. '%' signs are optional.
 	 * @param  mixed  $callback  Replacement callback. Should return value, not output it.
@@ -54,7 +58,10 @@ class Helper {
 	 * @return bool Replacement was registered successfully or not.
 	 */
 	public static function register_var_replacement( $var, $callback, $args = [] ) {
-		return Replace_Vars::register_replacement( $var, $callback, $args );
+		_deprecated_function( 'RankMath\Helper::register_var_replacement()', '1.0.34', 'rank_math_register_var_replacement()' );
+		$args['description'] = isset( $args['desc'] ) ? $args['desc'] : '';
+		$args['variable']    = $var;
+		return rank_math_register_var_replacement( $var, $args, $callback );
 	}
 
 	/**
@@ -109,40 +116,12 @@ class Helper {
 	}
 
 	/**
-	 * Get RM Search Console API config.
-	 *
-	 * @return array
-	 */
-	public static function get_console_api_config() {
-		return array(
-			'application_name' => 'Rank Math',
-			'client_id'        => '521003500769-n68nimh2rrahq6b4cdcjm03ojgsukr1f.apps.googleusercontent.com',
-			'client_secret'    => 'nPNvFDg-1MHrT1cAFQouaVtK',
-			'redirect_uri'     => 'urn:ietf:wg:oauth:2.0:oob',
-			'scopes'           => array( 'https://www.googleapis.com/auth/webmasters', 'https://www.googleapis.com/auth/analytics', 'https://www.googleapis.com/auth/analytics.edit', 'https://www.googleapis.com/auth/adsense.readonly' ),
-			'token_url'        => 'https://accounts.google.com/o/oauth2/token',
-			'auth_url'         => 'https://accounts.google.com/o/oauth2/auth',
-			'signon_certs_rl'  => 'https://www.googleapis.com/oauth2/v1/certs',
-			'revoke_url'       => 'https://accounts.google.com/o/oauth2/revoke',
-		);
-	}
-
-	/**
 	 * Get Search Console auth url.
 	 *
 	 * @return string
 	 */
 	public static function get_console_auth_url() {
-		$config = self::get_console_api_config();
-
-		$params = array(
-			'response_type' => 'code',
-			'client_id'     => $config['client_id'],
-			'redirect_uri'  => $config['redirect_uri'],
-			'scope'         => implode( ' ', $config['scopes'] ),
-		);
-
-		return add_query_arg( $params, $config['auth_url'] );
+		return \RankMath\Search_Console\Client::get()->get_auth_url();
 	}
 
 	/**

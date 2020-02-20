@@ -301,7 +301,7 @@ class Admin implements Runner {
 					</div>
 					<span class="suggestion-title" data-fk=\'%1$s\'><a target="_blank" href="%2$s" title="%3$s">%4$s</a></span>
 				</div>',
-				esc_attr( json_encode( $suggestion['focus_keywords'] ) ),
+				esc_attr( wp_json_encode( $suggestion['focus_keywords'] ) ),
 				$suggestion['url'], $suggestion['title'], $label,
 				esc_attr__( 'Copy Link URL to Clipboard', 'rank-math' ),
 				esc_attr__( 'Insert Link in Content', 'rank-math' ),
@@ -368,9 +368,9 @@ class Admin implements Runner {
 				'title' => esc_html__( 'Setup Wizard', 'rank-math' ),
 			],
 			'import-export' => [
-				'url'   => 'import-export',
-				'args'  => '',
-				'cap'   => 'manage_options',
+				'url'   => 'status',
+				'args'  => 'view=import_export',
+				'cap'   => 'install_plugins',
 				'title' => esc_html__( 'Import &amp; Export', 'rank-math' ),
 			],
 		];
