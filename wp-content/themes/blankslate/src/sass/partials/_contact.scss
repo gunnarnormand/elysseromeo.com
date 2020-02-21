@@ -1,4 +1,4 @@
-/* FORM STYLES
+/* CONTACT STYLES
   ========================================================================== */
 
 .hide-form-arrow {
@@ -35,6 +35,7 @@
 
 .form {
 	width: 100%;
+	padding: 0 20px;
 
 	@include bp-tablet {
 		width: 75%;
@@ -46,7 +47,6 @@
 
 	h2 {
 		color: $dark-blue;
-		margin: 0 20px;
 		padding: 20px 0;
 		font-size: 2em;
 
@@ -123,10 +123,6 @@ form {
 
 .wpforms-submit-container {
 	position: relative;
-}
-
-.wpforms-submit {
-	// cursor: pointer;
 }
 
 #submit-btn {

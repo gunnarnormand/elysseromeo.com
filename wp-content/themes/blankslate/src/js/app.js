@@ -37,6 +37,7 @@ const app = (function () {
 	const innerCursor = document.querySelector(".cursor--small");
 	const canvas = document.querySelector(".cursor--canvas");
 	const $submitBtn =  document.querySelector('button[type="submit"]');
+	const $contactLinks = document.querySelectorAll('.contact-link');
 
   const loaderModule = () => {
     const $footerNav = document.querySelector('.onepage-pagination');
@@ -295,8 +296,16 @@ const app = (function () {
 			});
 			$logo.addEventListener("mouseenter", handleBasicCursorMouseEnter);
 			$logo.addEventListener("mouseleave", handleBasicCursorMouseLeave);
-			$submitBtn.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
-			$submitBtn.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			if ($submitBtn) {
+				$submitBtn.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+				$submitBtn.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+			}
+			if ($contactLinks) {
+				$contactLinks.forEach(link => {
+					link.addEventListener("mouseenter", handleCanvasCursorMouseEnter);
+					link.addEventListener("mouseleave", handleCanvasCursorMouseLeave);
+				});
+			}
 
 		}
 		initCursorHovers();
