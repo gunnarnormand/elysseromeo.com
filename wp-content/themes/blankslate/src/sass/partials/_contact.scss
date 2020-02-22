@@ -15,13 +15,12 @@
 	}
 }
 
-.contact-form {
+.contact-page {
 	width: 100%;
 	height: calc(100% - 115px);
 	position: absolute;
 	top: 65px;
 	left: 0;
-	z-index: 6;
 	color: $dark-blue;
 	background-color: $white;
 	display: flex;
@@ -31,11 +30,15 @@
 	overflow: hidden;
 	opacity: 0;
 	visibility: hidden;
+	padding: 0 20px;
+	z-index: 6;
 }
 
-.form {
+.contact-heading {
 	width: 100%;
-	padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
 	@include bp-tablet {
 		width: 75%;
@@ -47,7 +50,6 @@
 
 	h2 {
 		color: $dark-blue;
-		padding: 20px 0;
 		font-size: 2em;
 
 		@include bp-tablet {
@@ -57,6 +59,22 @@
 		@include bp-desktop {
 			font-size: 2.5em;
 		}
+	}
+
+	.arrow {
+		margin: 0;
+	}
+}
+
+.form {
+	width: 100%;
+
+	@include bp-tablet {
+		width: 75%;
+	}
+
+	@include bp-desktop {
+		width: 50%;
 	}
 }
 

@@ -22,14 +22,16 @@
 		</a>
 		<a href="#" class="about"><?php _e('about', 'elysseromeo') ?></a>
 	</header>
-	<div class="contact-form">
-		<div class="arrow hide-form-arrow">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.92 78.87">
-				<path id="hideFormArrow" class="cls-arrow" d="M117.51,35.89c-36-1.71-72.11-3.24-107.91,1.34l30.06-33C41.82,1.9,38.44-1.52,36.12.74L13.86,22.41c-3.24,3.15-6.61,6.22-9.74,9.48C2,34.12-.26,36.64,0,40S2.83,45.31,5,47.4c3.19,3.13,6.41,6.24,9.62,9.36l22,21.39c2.31,2.25,5.85-1.28,3.54-3.53L22.92,57.91,14,49.22C12.16,47.43,8.56,45,6.82,42.63c36.67-5.18,73.82-3.49,110.69-1.74C120.72,41,120.72,36,117.51,35.89Z"/>
-			</svg>
+	<div class="contact-page">
+		<div class="contact-heading">
+			<h2 class="miller-banner-light"><?php echo get_field('form_title', 'option') ?></h2>
+			<div class="arrow hide-form-arrow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 119.92 78.87">
+					<path id="hideFormArrow" class="cls-arrow" d="M117.51,35.89c-36-1.71-72.11-3.24-107.91,1.34l30.06-33C41.82,1.9,38.44-1.52,36.12.74L13.86,22.41c-3.24,3.15-6.61,6.22-9.74,9.48C2,34.12-.26,36.64,0,40S2.83,45.31,5,47.4c3.19,3.13,6.41,6.24,9.62,9.36l22,21.39c2.31,2.25,5.85-1.28,3.54-3.53L22.92,57.91,14,49.22C12.16,47.43,8.56,45,6.82,42.63c36.67-5.18,73.82-3.49,110.69-1.74C120.72,41,120.72,36,117.51,35.89Z"/>
+				</svg>
+			</div>
 		</div>
 		<div class="form">
-			<h2 class="miller-banner-light"><?php echo get_field('form_title', 'option') ?></h2>
 			<?php echo get_field('contact_form', 'option') ?>
 		</div>
 	</div>
