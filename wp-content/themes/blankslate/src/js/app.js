@@ -260,7 +260,7 @@ const app = (function () {
 				TweenMax.to(innerCursor, 1, {background:'#b7dde1', scale:1, ease: Expo.easeOut});
 			};
 			const handleBasicCursorMouseEnter = e => {
-				TweenMax.to(innerCursor, 1, {background:'rgba(60, 74, 83, 0.5)', scale:2, ease: Expo.easeOut});
+				TweenMax.to(innerCursor, 1, {background:'rgba(183, 221, 225, 0.5)', scale:2, ease: Expo.easeOut});
 			};
 			const handleBasicCursorMouseLeave = () => {
 				TweenMax.to(innerCursor, 1, {background:'#b7dde1', scale:1, ease: Expo.easeOut});
